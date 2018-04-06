@@ -1,0 +1,4 @@
+pers	pers-module.html
+pers.__package__	pers-module.html#__package__
+pers.main	pers.main-module.html
+pers.main.__package__	pers.main-module.html#__package__
