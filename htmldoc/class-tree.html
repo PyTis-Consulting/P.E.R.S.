@@ -38,10 +38,6 @@
         <!-- hide/show private -->
         <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
-        <tr><td align="right"><span class="options"
-            >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="class-tree.html"
-            target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
@@ -52,17 +48,17 @@
 </b></center><br />
 <h1 class="epydoc">Class Hierarchy</h1>
 <ul class="nomargin-top">
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Bindings-class.html">pers.pylib3.util.functional.Bindings</a></strong>:
-      <em class="summary">Binding establishes an immutable mapping between names and values.</em>
-    </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.functional.Bindings-class.html">pers.pylib.util.functional.Bindings</a></strong>:
       <em class="summary">Binding establishes an immutable mapping between names and values.</em>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Blank-class.html">pers.pylib3.util.functional.Blank</a></strong>:
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Bindings-class.html">pers.pylib3.util.functional.Bindings</a></strong>:
+      <em class="summary">Binding establishes an immutable mapping between names and values.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.util.functional.Blank-class.html">pers.pylib.util.functional.Blank</a></strong>:
       <em class="summary">When passed in a call to curry, or to a curried function, this is 
         treated as a placeholder for future calls to replace.</em>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.util.functional.Blank-class.html">pers.pylib.util.functional.Blank</a></strong>:
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Blank-class.html">pers.pylib3.util.functional.Blank</a></strong>:
       <em class="summary">When passed in a call to curry, or to a curried function, this is 
         treated as a placeholder for future calls to replace.</em>
     </li>
@@ -84,84 +80,13 @@
     - Examples of programs that produce such beasts include
       MySQL and Excel</em>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.util.functional.FuncMethUnion-class.html">pers.pylib.util.functional.FuncMethUnion</a></strong>:
-      <em class="summary">This utility class exposes instance methods and functions 
-        identically.</em>
-    </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.FuncMethUnion-class.html">pers.pylib3.util.functional.FuncMethUnion</a></strong>:
       <em class="summary">This utility class exposes instance methods and functions 
         identically.</em>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Functor-class.html">pers.pylib3.util.functional.Functor</a></strong>:
-      <em class="summary">A class to assist functors (callable class instances) in 
-        masquerading as functions, by providing much of the material needed
-        by code which introspects functions for useful information (curry 
-        being the main example in this module).</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.always-class.html">pers.pylib3.util.functional.always</a></strong>:
-      <em class="summary">Returns a callable which always returns a given object.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.any_args-class.html">pers.pylib3.util.functional.any_args</a></strong>:
-      <em class="summary">Returns a callable which will take any arguments, and ignore them, 
-        calling *func* with no arguments.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.attempt-class.html">pers.pylib3.util.functional.attempt</a></strong>:
-      <em class="summary">Given a function sequence, attempt to call and return each in turn.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.complement-class.html">pers.pylib3.util.functional.complement</a></strong>:
-      <em class="summary">When called, returns the logical not of a call to *func* with the 
-        same arguments.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.compose-class.html">pers.pylib3.util.functional.compose</a></strong>:
-      <em class="summary">Takes any number of functions, and when called, applies them in
-reverse order.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.applycompose-class.html">pers.pylib3.util.functional.applycompose</a></strong>
-    </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.conjoin-class.html">pers.pylib3.util.functional.conjoin</a></strong>:
-      <em class="summary">Takes the functions *funcs*, and when called will return 1 if all 
-        of *funcs* return nonzero when applied to the arguments the conjoin
-        was called with.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.curry-class.html">pers.pylib3.util.functional.curry</a></strong>:
-      <em class="summary">A curried function (named after the person who pioneered the idea,
-Haskell Currry) is one which some arguments are already defined,
-something like default arguments in Python, but much more
-general.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.disjoin-class.html">pers.pylib3.util.functional.disjoin</a></strong>:
-      <em class="summary">Takes the functions *funcs*, and when called will return 1 if any 
-        of *funcs* returns nonzero when applied to the arguments the 
-        disjoin was called with.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.dispatch-class.html">pers.pylib3.util.functional.dispatch</a></strong>:
-      <em class="summary">Given a name, find and call a method with that name on a passed-in 
-        argument.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.error_handler-class.html">pers.pylib3.util.functional.error_handler</a></strong>:
-      <em class="summary">Takes a function, and either a function or some piece of data (or None,
-by default).</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.joinfuncs-class.html">pers.pylib3.util.functional.joinfuncs</a></strong>:
-      <em class="summary">Takes a number of functions, and returns a function which, when called,
-returns a tuple of all the values the original functions would return
-if called with those arguments.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.rcurry-class.html">pers.pylib3.util.functional.rcurry</a></strong>:
-      <em class="summary">*rcurry* works much like *curry*, but applies its arguments to the 
-        other end of the argument list.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.sequential-class.html">pers.pylib3.util.functional.sequential</a></strong>:
-      <em class="summary">Take a number of functions, and when called, call each of them in 
-        turn.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.wrap-class.html">pers.pylib3.util.functional.wrap</a></strong>:
-      <em class="summary">Convenience class which wraps up a function in a Functor so that it
-        can be used with the functional operators.</em>
-    </li>
-    </ul>
+    <li> <strong class="uidlink"><a href="pers.pylib.util.functional.FuncMethUnion-class.html">pers.pylib.util.functional.FuncMethUnion</a></strong>:
+      <em class="summary">This utility class exposes instance methods and functions 
+        identically.</em>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.functional.Functor-class.html">pers.pylib.util.functional.Functor</a></strong>:
       <em class="summary">A class to assist functors (callable class instances) in 
@@ -234,6 +159,77 @@ if called with those arguments.</em>
     </li>
     </ul>
     </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Functor-class.html">pers.pylib3.util.functional.Functor</a></strong>:
+      <em class="summary">A class to assist functors (callable class instances) in 
+        masquerading as functions, by providing much of the material needed
+        by code which introspects functions for useful information (curry 
+        being the main example in this module).</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.always-class.html">pers.pylib3.util.functional.always</a></strong>:
+      <em class="summary">Returns a callable which always returns a given object.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.any_args-class.html">pers.pylib3.util.functional.any_args</a></strong>:
+      <em class="summary">Returns a callable which will take any arguments, and ignore them, 
+        calling *func* with no arguments.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.attempt-class.html">pers.pylib3.util.functional.attempt</a></strong>:
+      <em class="summary">Given a function sequence, attempt to call and return each in turn.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.complement-class.html">pers.pylib3.util.functional.complement</a></strong>:
+      <em class="summary">When called, returns the logical not of a call to *func* with the 
+        same arguments.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.compose-class.html">pers.pylib3.util.functional.compose</a></strong>:
+      <em class="summary">Takes any number of functions, and when called, applies them in
+reverse order.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.applycompose-class.html">pers.pylib3.util.functional.applycompose</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.conjoin-class.html">pers.pylib3.util.functional.conjoin</a></strong>:
+      <em class="summary">Takes the functions *funcs*, and when called will return 1 if all 
+        of *funcs* return nonzero when applied to the arguments the conjoin
+        was called with.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.curry-class.html">pers.pylib3.util.functional.curry</a></strong>:
+      <em class="summary">A curried function (named after the person who pioneered the idea,
+Haskell Currry) is one which some arguments are already defined,
+something like default arguments in Python, but much more
+general.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.disjoin-class.html">pers.pylib3.util.functional.disjoin</a></strong>:
+      <em class="summary">Takes the functions *funcs*, and when called will return 1 if any 
+        of *funcs* returns nonzero when applied to the arguments the 
+        disjoin was called with.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.dispatch-class.html">pers.pylib3.util.functional.dispatch</a></strong>:
+      <em class="summary">Given a name, find and call a method with that name on a passed-in 
+        argument.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.error_handler-class.html">pers.pylib3.util.functional.error_handler</a></strong>:
+      <em class="summary">Takes a function, and either a function or some piece of data (or None,
+by default).</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.joinfuncs-class.html">pers.pylib3.util.functional.joinfuncs</a></strong>:
+      <em class="summary">Takes a number of functions, and returns a function which, when called,
+returns a tuple of all the values the original functions would return
+if called with those arguments.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.rcurry-class.html">pers.pylib3.util.functional.rcurry</a></strong>:
+      <em class="summary">*rcurry* works much like *curry*, but applies its arguments to the 
+        other end of the argument list.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.sequential-class.html">pers.pylib3.util.functional.sequential</a></strong>:
+      <em class="summary">Take a number of functions, and when called, call each of them in 
+        turn.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.wrap-class.html">pers.pylib3.util.functional.wrap</a></strong>:
+      <em class="summary">Convenience class which wraps up a function in a Functor so that it
+        can be used with the functional operators.</em>
+    </li>
+    </ul>
+    </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.FuncMethUnion.MethCode-class.html">pers.pylib3.util.functional.FuncMethUnion.MethCode</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.functional.FuncMethUnion.MethCode-class.html">pers.pylib.util.functional.FuncMethUnion.MethCode</a></strong>
@@ -253,10 +249,10 @@ if called with those arguments.</em>
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Ref-class.html">pers.pylib3.util.functional.Ref</a></strong>:
+    <li> <strong class="uidlink"><a href="pers.pylib.util.functional.Ref-class.html">pers.pylib.util.functional.Ref</a></strong>:
       <em class="summary">A simple class to hold a value.</em>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.util.functional.Ref-class.html">pers.pylib.util.functional.Ref</a></strong>:
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.functional.Ref-class.html">pers.pylib3.util.functional.Ref</a></strong>:
       <em class="summary">A simple class to hold a value.</em>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.functional.SimCode-class.html">pers.pylib.util.functional.SimCode</a></strong>:
@@ -287,10 +283,10 @@ if called with those arguments.</em>
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.ordereddict.dIter-class.html">pers.pylib3.util.ordereddict.dIter</a></strong>:
+    <li> <strong class="uidlink"><a href="pers.pylib.util.ordereddict.dIter-class.html">pers.pylib.util.ordereddict.dIter</a></strong>:
       <em class="summary">Implements a basic dictionary iterator with 3 modes.</em>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.util.ordereddict.dIter-class.html">pers.pylib.util.ordereddict.dIter</a></strong>:
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.ordereddict.dIter-class.html">pers.pylib3.util.ordereddict.dIter</a></strong>:
       <em class="summary">Implements a basic dictionary iterator with 3 modes.</em>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.ordereddict.oDict-class.html">pers.pylib.util.ordereddict.oDict</a></strong>:
@@ -326,9 +322,9 @@ if called with those arguments.</em>
     </li>
     <li> <strong class="uidlink"><a href="pers.pytis.NoFiles-class.html">pers.pytis.NoFiles</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.csv.ParseError-class.html" onclick="show_private();">pers.pylib.csv.ParseError</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.csv.ParseError-class.html" onclick="show_private();">pers.pylib3.csv.ParseError</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.csv.ParseError-class.html" onclick="show_private();">pers.pylib.csv.ParseError</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pers.pytis.PermissionError-class.html">pers.pytis.PermissionError</a></strong>
     </li>
@@ -360,41 +356,6 @@ if called with those arguments.</em>
     <li> <strong class="uidlink">exceptions.SyntaxError</strong>:
       <em class="summary">Invalid syntax.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.ConfigObjError-class.html">pers.pylib3.configobj.ConfigObjError</a></strong>:
-      <em class="summary">This is the base class for all errors that ConfigObj raises.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.ConfigspecError-class.html">pers.pylib3.configobj.ConfigspecError</a></strong>:
-      <em class="summary">An error occured whilst parsing a configspec.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.DuplicateError-class.html">pers.pylib3.configobj.DuplicateError</a></strong>:
-      <em class="summary">The keyword or section specified already exists.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.InterpolationError-class.html">pers.pylib3.configobj.InterpolationError</a></strong>:
-      <em class="summary">Base class for the two interpolation errors.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.InterpolationLoopError-class.html">pers.pylib3.configobj.InterpolationLoopError</a></strong>:
-      <em class="summary">Maximum interpolation depth exceeded in string interpolation.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.MissingInterpolationOption-class.html">pers.pylib3.configobj.MissingInterpolationOption</a></strong>:
-      <em class="summary">A value specified for interpolation was missing.</em>
-    </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.NestingError-class.html">pers.pylib3.configobj.NestingError</a></strong>:
-      <em class="summary">This error indicates a level of nesting that doesn't match.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.ParseError-class.html">pers.pylib3.configobj.ParseError</a></strong>:
-      <em class="summary">This error indicates that a line is badly written.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.RepeatSectionError-class.html">pers.pylib3.configobj.RepeatSectionError</a></strong>:
-      <em class="summary">This error indicates additional sections in a section with a 
-        ``__many__`` (repeated) section.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.UnreprError-class.html">pers.pylib3.configobj.UnreprError</a></strong>:
-      <em class="summary">An error parsing in unrepr mode.</em>
-    </li>
-    </ul>
-    </li>
     <li> <strong class="uidlink"><a href="pers.pylib.configobj.ConfigObjError-class.html">pers.pylib.configobj.ConfigObjError</a></strong>:
       <em class="summary">This is the base class for all errors that ConfigObj raises.
 It is a subclass of SyntaxError.</em>
@@ -433,6 +394,41 @@ nor a valid section marker line.</em>
     </li>
     </ul>
     </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.ConfigObjError-class.html">pers.pylib3.configobj.ConfigObjError</a></strong>:
+      <em class="summary">This is the base class for all errors that ConfigObj raises.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.ConfigspecError-class.html">pers.pylib3.configobj.ConfigspecError</a></strong>:
+      <em class="summary">An error occured whilst parsing a configspec.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.DuplicateError-class.html">pers.pylib3.configobj.DuplicateError</a></strong>:
+      <em class="summary">The keyword or section specified already exists.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.InterpolationError-class.html">pers.pylib3.configobj.InterpolationError</a></strong>:
+      <em class="summary">Base class for the two interpolation errors.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.InterpolationLoopError-class.html">pers.pylib3.configobj.InterpolationLoopError</a></strong>:
+      <em class="summary">Maximum interpolation depth exceeded in string interpolation.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.MissingInterpolationOption-class.html">pers.pylib3.configobj.MissingInterpolationOption</a></strong>:
+      <em class="summary">A value specified for interpolation was missing.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.NestingError-class.html">pers.pylib3.configobj.NestingError</a></strong>:
+      <em class="summary">This error indicates a level of nesting that doesn't match.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.ParseError-class.html">pers.pylib3.configobj.ParseError</a></strong>:
+      <em class="summary">This error indicates that a line is badly written.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.RepeatSectionError-class.html">pers.pylib3.configobj.RepeatSectionError</a></strong>:
+      <em class="summary">This error indicates additional sections in a section with a 
+        ``__many__`` (repeated) section.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.UnreprError-class.html">pers.pylib3.configobj.UnreprError</a></strong>:
+      <em class="summary">An error parsing in unrepr mode.</em>
+    </li>
+    </ul>
+    </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.validate.VdtParamError-class.html">pers.pylib3.validate.VdtParamError</a></strong>:
       <em class="summary">An incorrect parameter was passed</em>
     </li>
@@ -446,38 +442,6 @@ nor a valid section marker line.</em>
     <li> <strong class="uidlink"><a href="pers.pylib3.configobj.UnknownType-class.html">pers.pylib3.configobj.UnknownType</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.configobj.UnknownType-class.html">pers.pylib.configobj.UnknownType</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.ValidateError-class.html">pers.pylib.validate.ValidateError</a></strong>:
-      <em class="summary">This error indicates that the check failed.
-It can be the base class for more specific errors.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtMissingValue-class.html">pers.pylib.validate.VdtMissingValue</a></strong>:
-      <em class="summary">No value was supplied to a check that needed one.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtTypeError-class.html">pers.pylib.validate.VdtTypeError</a></strong>:
-      <em class="summary">The value supplied was of the wrong type</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtUnknownCheckError-class.html">pers.pylib.validate.VdtUnknownCheckError</a></strong>:
-      <em class="summary">An unknown check function was requested</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueError-class.html">pers.pylib.validate.VdtValueError</a></strong>:
-      <em class="summary">The value supplied was of the correct type, but was not an allowed value.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooBigError-class.html">pers.pylib.validate.VdtValueTooBigError</a></strong>:
-      <em class="summary">The value supplied was of the correct type, but was too big.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooLongError-class.html">pers.pylib.validate.VdtValueTooLongError</a></strong>:
-      <em class="summary">The value supplied was of the correct type, but was too long.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooShortError-class.html">pers.pylib.validate.VdtValueTooShortError</a></strong>:
-      <em class="summary">The value supplied was of the correct type, but was too short.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooSmallError-class.html">pers.pylib.validate.VdtValueTooSmallError</a></strong>:
-      <em class="summary">The value supplied was of the correct type, but was too small.</em>
-    </li>
-    </ul>
-    </li>
-    </ul>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.validate.ValidateError-class.html">pers.pylib3.validate.ValidateError</a></strong>:
       <em class="summary">This error indicates that the check failed.</em>
@@ -505,6 +469,38 @@ It can be the base class for more specific errors.</em>
       <em class="summary">The value supplied was of the correct type, but was too short.</em>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.validate.VdtValueTooSmallError-class.html">pers.pylib3.validate.VdtValueTooSmallError</a></strong>:
+      <em class="summary">The value supplied was of the correct type, but was too small.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.ValidateError-class.html">pers.pylib.validate.ValidateError</a></strong>:
+      <em class="summary">This error indicates that the check failed.
+It can be the base class for more specific errors.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtMissingValue-class.html">pers.pylib.validate.VdtMissingValue</a></strong>:
+      <em class="summary">No value was supplied to a check that needed one.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtTypeError-class.html">pers.pylib.validate.VdtTypeError</a></strong>:
+      <em class="summary">The value supplied was of the wrong type</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtUnknownCheckError-class.html">pers.pylib.validate.VdtUnknownCheckError</a></strong>:
+      <em class="summary">An unknown check function was requested</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueError-class.html">pers.pylib.validate.VdtValueError</a></strong>:
+      <em class="summary">The value supplied was of the correct type, but was not an allowed value.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooBigError-class.html">pers.pylib.validate.VdtValueTooBigError</a></strong>:
+      <em class="summary">The value supplied was of the correct type, but was too big.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooLongError-class.html">pers.pylib.validate.VdtValueTooLongError</a></strong>:
+      <em class="summary">The value supplied was of the correct type, but was too long.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooShortError-class.html">pers.pylib.validate.VdtValueTooShortError</a></strong>:
+      <em class="summary">The value supplied was of the correct type, but was too short.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib.validate.VdtValueTooSmallError-class.html">pers.pylib.validate.VdtValueTooSmallError</a></strong>:
       <em class="summary">The value supplied was of the correct type, but was too small.</em>
     </li>
     </ul>
@@ -579,12 +575,12 @@ It can be the base class for more specific errors.</em>
     <li> <strong class="uidlink"><a href="pers.pytis.Pidfile-class.html">pers.pytis.Pidfile</a></strong>:
       <em class="summary">Manage a PID file</em>
     </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.SimpleVal-class.html">pers.pylib3.configobj.SimpleVal</a></strong>:
+      <em class="summary">A simple validator.</em>
+    </li>
     <li> <strong class="uidlink"><a href="pers.pylib.configobj.SimpleVal-class.html">pers.pylib.configobj.SimpleVal</a></strong>:
       <em class="summary">A simple validator.
 Can be used to check that all members expected are present.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.configobj.SimpleVal-class.html">pers.pylib3.configobj.SimpleVal</a></strong>:
-      <em class="summary">A simple validator.</em>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib3.validate.Validator-class.html">pers.pylib3.validate.Validator</a></strong>:
       <em class="summary">Validator is an object that allows you to register a set of 
@@ -642,13 +638,13 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.data_registry-class.html">pers.pylib3.util.data_registry</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.data_registry-class.html">pers.pylib.util.data_registry</a></strong>
     </li>
-    <li> <strong class="uidlink"><a href="pers.pylib3.util.dicts.default_dict-class.html">pers.pylib3.util.dicts.default_dict</a></strong>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.data_registry-class.html">pers.pylib3.util.data_registry</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.dicts.default_dict-class.html">pers.pylib.util.dicts.default_dict</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="pers.pylib3.util.dicts.default_dict-class.html">pers.pylib3.util.dicts.default_dict</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="pers.pylib.util.dicts.default_set_dict-class.html">pers.pylib.util.dicts.default_set_dict</a></strong>
     </li>
@@ -691,7 +687,7 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Apr  6 15:43:49 2018
+    Generated by Epydoc 3.0.1 on Fri Apr  6 15:51:40 2018
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
