@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pers.pylib3.util.functional</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pers-module.html">Package&nbsp;pers</a> ::
+        <a href="pers.pylib3-module.html">Package&nbsp;pylib3</a> ::
+        <a href="pers.pylib3.util-module.html">Package&nbsp;util</a> ::
+        Module&nbsp;functional
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module functional</h1><p class="nomargin-top"><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html">source&nbsp;code</a></span></p>
+<p>functional.py provides support for a functional style of Python 
+  programming.</p>
+  <p>It includes support for curried functions, and  some higher-order 
+  functions for composing, sequencing, and otherwise manipulating 
+  functions.</p>
+
+<hr />
+<div class="fields">      <p><strong>Version:</strong>
+        1.1.0
+      </p>
+</div><!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.Ref-class.html" class="summary-name">Ref</a><br />
+      A simple class to hold a value.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.Blank-class.html" class="summary-name">Blank</a><br />
+      When passed in a call to curry, or to a curried function, this is 
+        treated as a placeholder for future calls to replace.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.FuncMethUnion-class.html" class="summary-name">FuncMethUnion</a><br />
+      This utility class exposes instance methods and functions 
+        identically.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.SimCode-class.html" class="summary-name">SimCode</a><br />
+      Holds some of the same attributes a code object would have, for the
+        benefit of functions like curry that work better when they have the
+        information that code objects provide.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.Functor-class.html" class="summary-name">Functor</a><br />
+      A class to assist functors (callable class instances) in 
+        masquerading as functions, by providing much of the material needed
+        by code which introspects functions for useful information (curry 
+        being the main example in this module).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.wrap-class.html" class="summary-name">wrap</a><br />
+      Convenience class which wraps up a function in a Functor so that it
+        can be used with the functional operators.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.curry-class.html" class="summary-name">curry</a><br />
+      A curried function (named after the person who pioneered the idea,
+Haskell Currry) is one which some arguments are already defined,
+something like default arguments in Python, but much more
+general.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.rcurry-class.html" class="summary-name">rcurry</a><br />
+      *rcurry* works much like *curry*, but applies its arguments to the 
+        other end of the argument list.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.compose-class.html" class="summary-name">compose</a><br />
+      Takes any number of functions, and when called, applies them in
+reverse order.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.applycompose-class.html" class="summary-name">applycompose</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.joinfuncs-class.html" class="summary-name">joinfuncs</a><br />
+      Takes a number of functions, and returns a function which, when called,
+returns a tuple of all the values the original functions would return
+if called with those arguments.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.complement-class.html" class="summary-name">complement</a><br />
+      When called, returns the logical not of a call to *func* with the 
+        same arguments.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.disjoin-class.html" class="summary-name">disjoin</a><br />
+      Takes the functions *funcs*, and when called will return 1 if any 
+        of *funcs* returns nonzero when applied to the arguments the 
+        disjoin was called with.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.conjoin-class.html" class="summary-name">conjoin</a><br />
+      Takes the functions *funcs*, and when called will return 1 if all 
+        of *funcs* return nonzero when applied to the arguments the conjoin
+        was called with.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.sequential-class.html" class="summary-name">sequential</a><br />
+      Take a number of functions, and when called, call each of them in 
+        turn.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.always-class.html" class="summary-name">always</a><br />
+      Returns a callable which always returns a given object.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.any_args-class.html" class="summary-name">any_args</a><br />
+      Returns a callable which will take any arguments, and ignore them, 
+        calling *func* with no arguments.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.error_handler-class.html" class="summary-name">error_handler</a><br />
+      Takes a function, and either a function or some piece of data (or None,
+by default).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.attempt-class.html" class="summary-name">attempt</a><br />
+      Given a function sequence, attempt to call and return each in turn.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.BindingError-class.html" class="summary-name">BindingError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.Bindings-class.html" class="summary-name">Bindings</a><br />
+      Binding establishes an immutable mapping between names and values.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional.dispatch-class.html" class="summary-name">dispatch</a><br />
+      Given a name, find and call a method with that name on a passed-in 
+        argument.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="closure"></a><span class="summary-sig-name">closure</span>(<span class="summary-sig-arg">func</span>,
+        <span class="summary-sig-arg">locs</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#closure">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#blend" class="summary-sig-name">blend</a>(<span class="summary-sig-arg">func</span>,
+        <span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">mix</span>)</span><br />
+      This function returns a list based on *original*, with any elements 
+      that *func* returns nonzero for replaced one by one with items from 
+      *mix*.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#blend">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#also" class="summary-sig-name">also</a>(<span class="summary-sig-arg">*args</span>)</span><br />
+      Handles the common case for **sequential**, in which the first 
+      function passed is the significant one.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#also">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#trap_error" class="summary-sig-name">trap_error</a>(<span class="summary-sig-arg">func</span>,
+        <span class="summary-sig-arg">on_error</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Where error_handler builds a new functor with built-in error handling
+      capability, this function calls *func* immediately, and calls 
+      *on_error* if it is callable, passing it sys.exc_info(), or returns 
+      *on_error* if it is not callable.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#trap_error">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="even"></a><span class="summary-sig-name">even</span>(<span class="summary-sig-arg">x</span>)</span><br />
+      Returns 1 if x is even, 0 otherwise.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#even">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="positive"></a><span class="summary-sig-name">positive</span>(<span class="summary-sig-arg">x</span>)</span><br />
+      Returns 1 if x is positive, 0 otherwise.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#positive">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="negative"></a><span class="summary-sig-name">negative</span>(<span class="summary-sig-arg">x</span>)</span><br />
+      Returns 1 if x is negative, 0 otherwise.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#negative">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#any" class="summary-sig-name">any</a>(<span class="summary-sig-arg">sequence</span>,
+        <span class="summary-sig-arg">test_func</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Returns 1 if for any member of a sequence, test_func returns a 
+      non-zero result.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#any">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#all" class="summary-sig-name">all</a>(<span class="summary-sig-arg">sequence</span>,
+        <span class="summary-sig-arg">test_func</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Returns 1 if for all members of a sequence, test_func returns a 
+      non-zero result.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#all">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="head"></a><span class="summary-sig-name">head</span>(<span class="summary-sig-arg">sequence</span>)</span><br />
+      Returns the first element of a sequence.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#head">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="tail"></a><span class="summary-sig-name">tail</span>(<span class="summary-sig-arg">sequence</span>)</span><br />
+      Returns the slice of *sequence* containing all elements after the 
+      first.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#tail">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="car"></a><span class="summary-sig-name">car</span>(<span class="summary-sig-arg">sequence</span>)</span><br />
+      Returns the first element of a sequence.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#head">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="cdr"></a><span class="summary-sig-name">cdr</span>(<span class="summary-sig-arg">sequence</span>)</span><br />
+      Returns the slice of *sequence* containing all elements after the 
+      first.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#tail">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="namespace"></a><span class="summary-sig-name">namespace</span>(<span class="summary-sig-arg">bindings</span>)</span><br />
+      Given a Bindings object, return a dictionary with a snapshot of the 
+      current bindings suitable for use with eval().</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#namespace">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#mapdict" class="summary-sig-name">mapdict</a>(<span class="summary-sig-arg">itemfunc</span>,
+        <span class="summary-sig-arg">dictionary</span>)</span><br />
+      Much like the builtin function 'map', but works on dictionaries.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#mapdict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#filterdict" class="summary-sig-name">filterdict</a>(<span class="summary-sig-arg">itemfunc</span>,
+        <span class="summary-sig-arg">dictionary</span>)</span><br />
+      Filters a dictionary like 'filter' filters a list.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#filterdict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="invertdict"></a><span class="summary-sig-name">invertdict</span>(<span class="summary-sig-arg">dictionary</span>)</span><br />
+      Takes a dictionary and returns a new one, with the keys and values 
+      exchanged.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#invertdict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#dict" class="summary-sig-name">dict</a>(<span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Takes arguments and builds a dictionary from them.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#dict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#error" class="summary-sig-name">error</a>(<span class="summary-sig-arg">err</span>,
+        <span class="summary-sig-arg">arg</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">trace</span>=<span class="summary-sig-default">None</span>)</span><br />
+      A function which allows an error to be raised within a lambda
+or other expression.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#error">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.util.functional-module.html#do" class="summary-sig-name">do</a>(<span class="summary-sig-arg">*args</span>)</span><br />
+      Returns the last argument passed to it.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#do">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.util.functional-module.html#none_of" class="summary-name">none_of</a> = <code title="&lt;pers.pylib3.util.functional.complement instance at 0x91ead4c&gt;">&lt;pers.pylib3.util.functional.complement instance at <code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'pers.pylib3.util'"><code class="variable-quote">'</code><code class="variable-string">pers.pylib3.util</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="blend"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">blend</span>(<span class="sig-arg">func</span>,
+        <span class="sig-arg">original</span>,
+        <span class="sig-arg">mix</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#blend">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This function returns a list based on *original*, with any elements 
+  that *func* returns nonzero for replaced one by one with items from 
+  *mix*. Any unused items in *mix* appear at the end of the new list. If 
+  there are items which should be replaced, but there are no more items in 
+  *mix*, then those items are left unchanged.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="also"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">also</span>(<span class="sig-arg">*args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#also">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Handles the common case for **sequential**, in which the first 
+  function passed is the significant one. It takes free arguments instead 
+  of a single sequence argument. Example: &gt;&gt;&gt; def one(): ...     
+  print &quot;one&quot; ...     return 1 ... &gt;&gt;&gt; def two(): ...
+  print &quot;two&quot; ...     return 2 ... &gt;&gt;&gt; def three(): ...
+  print &quot;three&quot; ...     return 3 ... &gt;&gt;&gt; one() one 1 
+  &gt;&gt;&gt; x = one() one &gt;&gt;&gt; x 1 &gt;&gt;&gt; x = also(one, 
+  two, three)() one two three &gt;&gt;&gt; x 1 &gt;&gt;&gt; x = also(two, 
+  one, three)() two one three</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="trap_error"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">trap_error</span>(<span class="sig-arg">func</span>,
+        <span class="sig-arg">on_error</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#trap_error">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Where error_handler builds a new functor with built-in error handling 
+  capability, this function calls *func* immediately, and calls *on_error* 
+  if it is callable, passing it sys.exc_info(), or returns *on_error* if it
+  is not callable. Example: &gt;&gt;&gt; trap_error(lambda:1/0, 
+  &quot;Yup&quot;) 'Yup' &gt;&gt;&gt; trap_error(lambda:1/0, lambda x: 
+  x[1]) &lt;exceptions.ZeroDivisionError instance at 007A73FC&gt; 
+  &gt;&gt;&gt;</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="any"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">any</span>(<span class="sig-arg">sequence</span>,
+        <span class="sig-arg">test_func</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#any">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns 1 if for any member of a sequence, test_func returns a 
+  non-zero result. If test_func is not supplied, returns 1 if any member of
+  the sequence is nonzero (e.g., not one of (), [], None, 0).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="all"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">all</span>(<span class="sig-arg">sequence</span>,
+        <span class="sig-arg">test_func</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#all">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns 1 if for all members of a sequence, test_func returns a 
+  non-zero result. If test_func is not supplied, returns 1 if all members 
+  of the sequence are nonzero (i.e., not one of (), [], None, 0).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="mapdict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mapdict</span>(<span class="sig-arg">itemfunc</span>,
+        <span class="sig-arg">dictionary</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#mapdict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Much like the builtin function 'map', but works on dictionaries. 
+  *itemfunc* should be a function which takes one parameter, a (key, value)
+  pair, and returns a new (or same) (key, value) pair to go in the 
+  dictionary.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="filterdict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">filterdict</span>(<span class="sig-arg">itemfunc</span>,
+        <span class="sig-arg">dictionary</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#filterdict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Filters a dictionary like 'filter' filters a list. *itemfunc* should 
+  be a function which takes two parameter, a(key, value) pair and returns 1
+  if the pair should be in the new dictionary, 0 otherwise.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="dict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dict</span>(<span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#dict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Takes arguments and builds a dictionary from them. The actual 
+  arguments can vary widely. A single list of (key, value) pairs, or an 
+  unlimited number of (key, value) pairs may be passed. In addition, any 
+  number of keyword arguments may be passed, which will be added to the 
+  dictionary as well.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="error"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">error</span>(<span class="sig-arg">err</span>,
+        <span class="sig-arg">arg</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">trace</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#error">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+A function which allows an error to be raised within a lambda
+or other expression. For example:
+&gt;&gt;&gt; f = lambda x:   (x == 3 and &quot;Three!&quot;)     ...              or (x == 5 and &quot;Five!&quot;)     ...              or error(RuntimeError)
+&gt;&gt;&gt;
+&gt;&gt;&gt; f(3)
+'Three!'
+&gt;&gt;&gt; f(5)
+'Five!'
+&gt;&gt;&gt; f(6)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in ?
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;lambda&gt;
+  File &quot;functional.py&quot;, line 874, in error
+    raise err
+RuntimeError
+&gt;&gt;&gt;    
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="do"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">do</span>(<span class="sig-arg">*args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.util.functional-pysrc.html#do">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the last argument passed to it. This is useful because 
+  arguments are evaluated from left to right before a function call. This 
+  can enable &quot;imperative&quot; style in a lambda expression. For 
+  example:</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="none_of"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">none_of</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+&lt;pers.pylib3.util.functional.complement instance at 0x91ead4c&gt;
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Apr  6 15:36:13 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

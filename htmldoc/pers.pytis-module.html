@@ -1,0 +1,1579 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pers.pytis</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pers-module.html">Package&nbsp;pers</a> ::
+        Module&nbsp;pytis
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module pytis</h1><p class="nomargin-top"><span class="codelink"><a href="pers.pytis-pysrc.html">source&nbsp;code</a></span></p>
+<p>This library started as a single file to hold just a few functions 
+  that I repeatedly used.  Slowly it grew to include a universal config 
+  file loading, saving, editing tool that is used by several of my scripts.
+  Eventually I wrote a sub-class of the optparse.OptionParser, and my own 
+  logging file.  As with any script library, this one has grown as my 
+  repetuir of scripts has.  Now I am adding in several classes from 
+  pyservice.py Andrey Usov (https://github.com/ownport/pyservice).  I tried
+  to utilize his library for daemonizing python scripts, but with no 
+  success.  I am going to have to rewrite parts of it but I will be 
+  utilizing some of his classes.</p>
+  <p>RIGHTVERSION</p>
+
+<hr />
+<div class="fields">      <p><strong>Version:</strong>
+        5.1
+      </p>
+      <p><strong>Author:</strong>
+        Josh Lee
+      </p>
+      <p><strong>Copyright:</strong>
+        PyTis.com
+      </p>
+</div><!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.PermissionError-class.html" class="summary-name">PermissionError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.DieNow-class.html" class="summary-name">DieNow</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.NoFiles-class.html" class="summary-name">NoFiles</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.QuitNow-class.html" class="summary-name">QuitNow</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.FileExists-class.html" class="summary-name">FileExists</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.EmptyString-class.html" class="summary-name">EmptyString</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.FileNotFound-class.html" class="summary-name">FileNotFound</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.FutureFeature-class.html" class="summary-name">FutureFeature</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.EmptyTemplate-class.html" class="summary-name">EmptyTemplate</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.ProgrammerError-class.html" class="summary-name">ProgrammerError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.ConfigurationError-class.html" class="summary-name">ConfigurationError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.DuplicateCopyright-class.html" class="summary-name">DuplicateCopyright</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.IdiotError-class.html" class="summary-name">IdiotError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.ArgumentError-class.html" class="summary-name">ArgumentError</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.NullLogHandler-class.html" class="summary-name">NullLogHandler</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.MyThread-class.html" class="summary-name">MyThread</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.Pidfile-class.html" class="summary-name">Pidfile</a><br />
+      Manage a PID file
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.ConfigFile-class.html" class="summary-name">ConfigFile</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.ConfigField-class.html" class="summary-name">ConfigField</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.MyLogger-class.html" class="summary-name">MyLogger</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.MyParser-class.html" class="summary-name">MyParser</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.Callback-class.html" class="summary-name">Callback</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.ImmutableDict-class.html" class="summary-name">ImmutableDict</a><br />
+      This is a dictionary that enforces as set once and only once 
+        policy.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis.OrderedDict-class.html" class="summary-name">OrderedDict</a>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="conjoin"></a><span class="summary-sig-name">conjoin</span>(<span class="summary-sig-arg">unknown</span>,
+        <span class="summary-sig-arg">errors</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#conjoin">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="config_file"></a><span class="summary-sig-name">config_file</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#config_file">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_config"></a><span class="summary-sig-name">load_config</span>(<span class="summary-sig-arg">config_file</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">/root/github/p.e.r.s./src/etc/(imported).ini</code><code class="variable-quote">'</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#load_config">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="column_from_csv_file"></a><span class="summary-sig-name">column_from_csv_file</span>(<span class="summary-sig-arg">fname</span>,
+        <span class="summary-sig-arg">headers</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">col</span>=<span class="summary-sig-default">0</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#column_from_csv_file">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="parse_csv_file"></a><span class="summary-sig-name">parse_csv_file</span>(<span class="summary-sig-arg">fname</span>,
+        <span class="summary-sig-arg">headers</span>=<span class="summary-sig-default">False</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#parse_csv_file">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_calling_file"></a><span class="summary-sig-name">get_calling_file</span>()</span><br />
+      Needs error checking</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#get_calling_file">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="calling_module"></a><span class="summary-sig-name">calling_module</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#calling_module">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getVersion"></a><span class="summary-sig-name">getVersion</span>(<span class="summary-sig-arg">mod</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#getVersion">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="optional_arg"></a><span class="summary-sig-name">optional_arg</span>(<span class="summary-sig-arg">arg_default</span>,
+        <span class="summary-sig-arg">choices</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#optional_arg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#getInput" class="summary-sig-name">getInput</a>(<span class="summary-sig-arg">question</span>,
+        <span class="summary-sig-arg">helptext</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">No help for this command</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">example_or_hint</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">required</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Full Name - press Enter for default: root
+if helptext:
+        if required:
+                Full Name [i.e.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#getInput">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getInputYN"></a><span class="summary-sig-name">getInputYN</span>(<span class="summary-sig-arg">question</span>,
+        <span class="summary-sig-arg">helptext</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">No help for this command</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">input_options</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">y</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">N</code><code class="variable-quote">'</code><code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">option_always</span>=<span class="summary-sig-default"><code class="variable-group">[</code>False<code class="variable-group">]</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#getInputYN">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="to80"></a><span class="summary-sig-name">to80</span>(<span class="summary-sig-arg">s</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#to80">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#wrap" class="summary-sig-name">wrap</a>(<span class="summary-sig-arg">text</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">79</span>)</span><br />
+      A word-wrap function that preserves existing line breaks
+        and most spaces in the text.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#wrap">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="fixWidth"></a><span class="summary-sig-name">fixWidth</span>(<span class="summary-sig-arg">st</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#fixWidth">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="version"></a><span class="summary-sig-name">version</span>(<span class="summary-sig-arg">v</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#version">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_logging"></a><span class="summary-sig-name">set_logging</span>(<span class="summary-sig-arg">opts</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">quiet</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">__logdir__</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">/root/github/p.e.r.s./src/log</code><code class="variable-quote">'</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#set_logging">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="homedir"></a><span class="summary-sig-name">homedir</span>()</span><br />
+      Get Home directory path in Python for Windows and Linux</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#homedir">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="timestamp"></a><span class="summary-sig-name">timestamp</span>(<span class="summary-sig-arg">full</span>=<span class="summary-sig-default">False</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#timestamp">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="fileModified"></a><span class="summary-sig-name">fileModified</span>(<span class="summary-sig-arg">path</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#fileModified">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="fileCreated"></a><span class="summary-sig-name">fileCreated</span>(<span class="summary-sig-arg">path</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#fileCreated">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="prettyNow"></a><span class="summary-sig-name">prettyNow</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#prettyNow">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="fileStampNow"></a><span class="summary-sig-name">fileStampNow</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#fileStampNow">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="testFind"></a><span class="summary-sig-name">testFind</span>(<span class="summary-sig-arg">path</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#testFind">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="filesFromPath"></a><span class="summary-sig-name">filesFromPath</span>(<span class="summary-sig-arg">path</span>,
+        <span class="summary-sig-arg">cd</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">.</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">recursive</span>=<span class="summary-sig-default">False</span>)</span><br />
+      allows me to call once per path (with or without wildcards)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#filesFromPath">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#filesFromArgs" class="summary-sig-name">filesFromArgs</a>(<span class="summary-sig-arg">opts</span>,
+        <span class="summary-sig-arg">args</span>)</span><br />
+      XXX:TODO unix only, need to make this so it would work on windows.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#filesFromArgs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="testFile"></a><span class="summary-sig-name">testFile</span>(<span class="summary-sig-arg">f</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#testFile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="fileTest"></a><span class="summary-sig-name">fileTest</span>(<span class="summary-sig-arg">f</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#fileTest">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="dirTest"></a><span class="summary-sig-name">dirTest</span>(<span class="summary-sig-arg">d</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#dirTest">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#toContinue" class="summary-sig-name">toContinue</a>()</span><br />
+      Prompt the user to press a key to continue.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#toContinue">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#dos2unix" class="summary-sig-name">dos2unix</a>(<span class="summary-sig-arg">thing</span>)</span><br />
+      This will take in 3 types of input, a list of strings a string or the
+      path to a file to fix.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#dos2unix">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="clearScreen"></a><span class="summary-sig-name">clearScreen</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#clearScreen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="hello"></a><span class="summary-sig-name">hello</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#hello">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="traceCaller"></a><span class="summary-sig-name">traceCaller</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#traceCaller">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="logging_file_descriptors"></a><span class="summary-sig-name">logging_file_descriptors</span>()</span><br />
+      logging file descriptors are used in core.Service.daemonize()</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#logging_file_descriptors">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#unique" class="summary-sig-name">unique</a>(<span class="summary-sig-arg">L</span>)</span><br />
+      ret = []...</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#unique">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="microtime"></a><span class="summary-sig-name">microtime</span>(<span class="summary-sig-arg">dt</span>=<span class="summary-sig-default">None</span>)</span><br />
+      simple microtime function that can take in a datetime timestamp to 
+      ret the microtime for, returns the microtime right now.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#microtime">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="tolen"></a><span class="summary-sig-name">tolen</span>(<span class="summary-sig-arg">instr</span>,
+        <span class="summary-sig-arg">i</span>=<span class="summary-sig-default">80</span>)</span><br />
+      Reads the input string :instr: and reformatts to an specified length 
+      :</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#tolen">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="mbool"></a><span class="summary-sig-name">mbool</span>(<span class="summary-sig-arg">val</span>,
+        <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">True</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#mbool">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="identify_sections"></a><span class="summary-sig-name">identify_sections</span>(<span class="summary-sig-arg">cfile</span>=<span class="summary-sig-default">&lt;module 'pers.pylib.configobj' from '/root/github/p.e.r.s./src<code class="variable-ellipsis">...</code></span>,
+        <span class="summary-sig-arg">filename</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#identify_sections">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_section"></a><span class="summary-sig-name">get_section</span>(<span class="summary-sig-arg">sections</span>,
+        <span class="summary-sig-arg">section_key</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#get_section">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="relative_date"></a><span class="summary-sig-name">relative_date</span>(<span class="summary-sig-arg">date</span>=<span class="summary-sig-default">datetime.datetime(2018, 4, 6, 15, 36, 8, 224175)</span>,
+        <span class="summary-sig-arg">years</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">months</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">weeks</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">days</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">hours</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">minutes</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#relative_date">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="trim"></a><span class="summary-sig-name">trim</span>(<span class="summary-sig-arg">item</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#trim">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="die"></a><span class="summary-sig-name">die</span>(<span class="summary-sig-arg">string</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#die">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="protect"></a><span class="summary-sig-name">protect</span>(<span class="summary-sig-arg">s</span>,
+        <span class="summary-sig-arg">trim_len</span>=<span class="summary-sig-default">4</span>)</span><br />
+      padd a password and only show the remaining &quot;trim_len&quot; 
+      example: protect('this now', 2) &gt;&gt; '******ow' example: 
+      protect('my password', 0) &gt;&gt; '**********'</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#protect">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#num2col" class="summary-sig-name">num2col</a>(<span class="summary-sig-arg">num</span>)</span><br />
+      Turns a numeric representation of a column into a MS Excel Column title.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#num2col">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pytis-module.html#col2num" class="summary-sig-name">col2num</a>(<span class="summary-sig-arg">col</span>)</span><br />
+      Turns a MS Excel Column title into     a numeric representation of a column.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#col2num">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="column"></a><span class="summary-sig-name">column</span>(<span class="summary-sig-arg">str_or_int</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#column">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="simpleDecode"></a><span class="summary-sig-name">simpleDecode</span>(<span class="summary-sig-arg">s</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#simpleDecode">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="simpleEncode"></a><span class="summary-sig-name">simpleEncode</span>(<span class="summary-sig-arg">s</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#simpleEncode">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="ireplace"></a><span class="summary-sig-name">ireplace</span>(<span class="summary-sig-arg">f</span>,
+        <span class="summary-sig-arg">r</span>,
+        <span class="summary-sig-arg">s</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#ireplace">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="sendEmail"></a><span class="summary-sig-name">sendEmail</span>(<span class="summary-sig-arg">body</span>,
+        <span class="summary-sig-arg">subject</span>,
+        <span class="summary-sig-arg">to</span>,
+        <span class="summary-sig-arg">mfrom</span>,
+        <span class="summary-sig-arg">cc</span>,
+        <span class="summary-sig-arg">host</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">local_hostname</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">port</span>=<span class="summary-sig-default">25</span>,
+        <span class="summary-sig-arg">timeout</span>=<span class="summary-sig-default">20</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#sendEmail">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="main"></a><span class="summary-sig-name">main</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pytis-pysrc.html#main">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="python_version"></a><span class="summary-name">python_version</span> = <code title="2.7">2.7</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__created__"></a><span class="summary-name">__created__</span> = <code title="'06:14pm 09 Sep, 2009'"><code class="variable-quote">'</code><code class="variable-string">06:14pm 09 Sep, 2009</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__configdir__"></a><span class="summary-name">__configdir__</span> = <code title="'/root/github/p.e.r.s./src/etc'"><code class="variable-quote">'</code><code class="variable-string">/root/github/p.e.r.s./src/etc</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__logdir__"></a><span class="summary-name">__logdir__</span> = <code title="'/root/github/p.e.r.s./src/log'"><code class="variable-quote">'</code><code class="variable-string">/root/github/p.e.r.s./src/log</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pytis-module.html#__change_log__" class="summary-name">__change_log__</a> = <code title="'''
+
+5.1
+\tAltered parse_csv_file to take in an IO object, as well as a path to\
+ a file.
+
+5.0
+\tWOW I haven\'t stayed up on updating this thing, I forgot this chang\
+..."><code class="variable-quote">'</code><code class="variable-string">\n\n5.1\n\tAltered parse_csv_file to take in</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__option_always__"></a><span class="summary-name">__option_always__</span> = <code title="[False]"><code class="variable-group">[</code>False<code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__input_options__"></a><span class="summary-name">__input_options__</span> = <code title="['y', 'N']"><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">y</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">N</code><code class="variable-quote">'</code><code class="variable-group">]</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'pers'"><code class="variable-quote">'</code><code class="variable-string">pers</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="getInput"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getInput</span>(<span class="sig-arg">question</span>,
+        <span class="sig-arg">helptext</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">No help for this command</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">example_or_hint</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">default</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">required</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#getInput">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Full Name - press Enter for default: root
+if helptext:
+        if required:
+                Full Name [i.e. John Smith (required)]:
+        else:
+                Full Name [i.e. John Smith (or leave blank)]:
+else:
+        if required:
+                Full Name (required):
+        else:
+                Full Name:
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="wrap"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">wrap</span>(<span class="sig-arg">text</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">79</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#wrap">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+        A word-wrap function that preserves existing line breaks
+        and most spaces in the text. Expects that existing line
+        breaks are posix newlines (
+).
+        
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="filesFromArgs"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">filesFromArgs</span>(<span class="sig-arg">opts</span>,
+        <span class="sig-arg">args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#filesFromArgs">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>XXX:TODO unix only, need to make this so it would work on windows. 
+  XXX:TODO this thing needs serious work, with recursive an no . in 
+  filenames import glob</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="toContinue"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">toContinue</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#toContinue">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Prompt the user to press a key to continue. Should probably use a 
+  pager most of the time though.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="dos2unix"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dos2unix</span>(<span class="sig-arg">thing</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#dos2unix">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This will take in 3 types of input, a list of strings a string or the 
+  path to a file to fix.</p>
+  <p>If your input is a file path, it will clean up the file (dos2unix)</p>
+  <p>If your input is a string, it will clean the string and return the 
+  cleaned input.</p>
+  <p>If your input is a list, it will clean each line, and return a new 
+  list.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="unique"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">unique</span>(<span class="sig-arg">L</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#unique">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+ret = []
+for l in L:
+        if l not in ret: ret.append(l)
+return ret
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="num2col"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">num2col</span>(<span class="sig-arg">num</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#num2col">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Turns a numeric representation of a column into a MS Excel Column title.
+EXAMPLES:
+        0 returns A,
+        25 returns Z,
+        26 returns AA,
+        51 returns AZ 
+        and 52 returns BA.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="col2num"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">col2num</span>(<span class="sig-arg">col</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pytis-pysrc.html#col2num">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Turns a MS Excel Column title into     a numeric representation of a column.
+EXAMPLES:
+        A return 0,
+        Z returns 25,
+        AA returns 26,
+        AZ returns 51,
+        and BA returns 52.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__change_log__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__change_log__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string"></code>
+<code class="variable-string"></code>
+<code class="variable-string">5.1</code>
+<code class="variable-string">\tAltered parse_csv_file to take in an IO object, as well as a path to</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string"> a file.</code>
+<code class="variable-string"></code>
+<code class="variable-string">5.0</code>
+<code class="variable-string">\tWOW I haven\'t stayed up on updating this thing, I forgot this chang</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Apr  6 15:36:13 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

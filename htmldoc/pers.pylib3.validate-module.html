@@ -1,0 +1,1883 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>pers.pylib3.validate</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="pers-module.html">Package&nbsp;pers</a> ::
+        <a href="pers.pylib3-module.html">Package&nbsp;pylib3</a> ::
+        Module&nbsp;validate
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module validate</h1><p class="nomargin-top"><span class="codelink"><a href="pers.pylib3.validate-pysrc.html">source&nbsp;code</a></span></p>
+<pre class="literalblock">
+
+The Validator object is used to check that supplied values 
+conform to a specification.
+
+The value can be supplied as a string - e.g. from a config file.
+In this case the check will also *convert* the value to
+the required type. This allows you to add validation
+as a transparent layer to access data stored as strings.
+The validation checks that the data is correct *and*
+converts it to the expected type.
+
+Some standard checks are provided for basic data types.
+Additional checks are easy to write. They can be
+provided when the ``Validator`` is instantiated or
+added afterwards.
+
+The standard functions work with the following basic data types :
+
+* integers
+* floats
+* booleans
+* strings
+* ip_addr
+
+plus lists of these datatypes
+
+Adding additional checks is done through coding simple functions.
+
+The full set of standard checks are : 
+
+* 'integer': matches integer values (including negative)
+             Takes optional 'min' and 'max' arguments : ::
+
+               integer()
+               integer(3, 9)  # any value from 3 to 9
+               integer(min=0) # any positive value
+               integer(max=9)
+
+* 'float': matches float values
+           Has the same parameters as the integer check.
+
+* 'boolean': matches boolean values - ``True`` or ``False``
+             Acceptable string values for True are :
+               true, on, yes, 1
+             Acceptable string values for False are :
+               false, off, no, 0
+
+             Any other value raises an error.
+
+* 'ip_addr': matches an Internet Protocol address, v.4, represented
+             by a dotted-quad string, i.e. '1.2.3.4'.
+
+* 'string': matches any string.
+            Takes optional keyword args 'min' and 'max'
+            to specify min and max lengths of the string.
+
+* 'list': matches any list.
+          Takes optional keyword args 'min', and 'max' to specify min and
+          max sizes of the list. (Always returns a list.)
+
+* 'tuple': matches any tuple.
+          Takes optional keyword args 'min', and 'max' to specify min and
+          max sizes of the tuple. (Always returns a tuple.)
+
+* 'int_list': Matches a list of integers.
+              Takes the same arguments as list.
+
+* 'float_list': Matches a list of floats.
+                Takes the same arguments as list.
+
+* 'bool_list': Matches a list of boolean values.
+               Takes the same arguments as list.
+
+* 'ip_addr_list': Matches a list of IP addresses.
+                 Takes the same arguments as list.
+
+* 'string_list': Matches a list of strings.
+                 Takes the same arguments as list.
+
+* 'mixed_list': Matches a list with different types in 
+                specific positions. List size must match
+                the number of arguments.
+
+                Each position can be one of :
+                'integer', 'float', 'ip_addr', 'string', 'boolean'
+
+                So to specify a list with two strings followed
+                by two integers, you write the check as : ::
+
+                  mixed_list('string', 'string', 'integer', 'integer')
+
+* 'pass': This check matches everything ! It never fails
+          and the value is unchanged.
+
+          It is also the default if no check is specified.
+
+* 'option': This check matches any from a list of options.
+            You specify this check with : ::
+
+              option('option 1', 'option 2', 'option 3')
+
+You can supply a default value (returned if no value is supplied)
+using the default keyword argument.
+
+You specify a list argument for default using a list constructor syntax in
+the check : ::
+
+    checkname(arg1, arg2, default=list('val 1', 'val 2', 'val 3'))
+
+A badly formatted set of arguments will raise a ``VdtParamError``.
+
+</pre>
+
+<hr />
+<div class="fields">      <p><strong>Version:</strong>
+        1.0.1
+      </p>
+</div><!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="int-class.html" class="summary-name" onclick="show_private();">long</a><br />
+      int(x[, base]) -&gt; integer
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.ValidateError-class.html" class="summary-name">ValidateError</a><br />
+      This error indicates that the check failed.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtMissingValue-class.html" class="summary-name">VdtMissingValue</a><br />
+      No value was supplied to a check that needed one.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtUnknownCheckError-class.html" class="summary-name">VdtUnknownCheckError</a><br />
+      An unknown check function was requested
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtParamError-class.html" class="summary-name">VdtParamError</a><br />
+      An incorrect parameter was passed
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtTypeError-class.html" class="summary-name">VdtTypeError</a><br />
+      The value supplied was of the wrong type
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtValueError-class.html" class="summary-name">VdtValueError</a><br />
+      The value supplied was of the correct type, but was not an allowed 
+        value.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtValueTooSmallError-class.html" class="summary-name">VdtValueTooSmallError</a><br />
+      The value supplied was of the correct type, but was too small.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtValueTooBigError-class.html" class="summary-name">VdtValueTooBigError</a><br />
+      The value supplied was of the correct type, but was too big.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtValueTooShortError-class.html" class="summary-name">VdtValueTooShortError</a><br />
+      The value supplied was of the correct type, but was too short.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.VdtValueTooLongError-class.html" class="summary-name">VdtValueTooLongError</a><br />
+      The value supplied was of the correct type, but was too long.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate.Validator-class.html" class="summary-name">Validator</a><br />
+      Validator is an object that allows you to register a set of 
+        'checks'.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="bool"></a><span class="summary-sig-name">bool</span>(<span class="summary-sig-arg">val</span>)</span><br />
+      Simple boolean equivalent function.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#bool">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#dottedQuadToNum" class="summary-sig-name">dottedQuadToNum</a>(<span class="summary-sig-arg">ip</span>)</span><br />
+      Convert decimal dotted quad string to long integer</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#dottedQuadToNum">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#numToDottedQuad" class="summary-sig-name">numToDottedQuad</a>(<span class="summary-sig-arg">num</span>)</span><br />
+      Convert int or long int to dotted quad string</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#numToDottedQuad">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#_is_num_param" class="summary-sig-name" onclick="show_private();">_is_num_param</a>(<span class="summary-sig-arg">names</span>,
+        <span class="summary-sig-arg">values</span>,
+        <span class="summary-sig-arg">to_float</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Return numbers from inputs or raise VdtParamError.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#_is_num_param">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_integer" class="summary-sig-name">is_integer</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      A check that tests that a given value is an integer (int, or long) 
+      and optionally, between bounds.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_integer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_float" class="summary-sig-name">is_float</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      A check that tests that a given value is a float (an integer will be 
+      accepted), and optionally - that it is between bounds.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_float">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_boolean" class="summary-sig-name">is_boolean</a>(<span class="summary-sig-arg">value</span>)</span><br />
+      Check if the value represents a boolean.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_boolean">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_ip_addr" class="summary-sig-name">is_ip_addr</a>(<span class="summary-sig-arg">value</span>)</span><br />
+      Check that the supplied value is an Internet Protocol address, v.4, 
+      represented by a dotted-quad string, i.e.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_ip_addr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_list" class="summary-sig-name">is_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a list of values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_tuple" class="summary-sig-name">is_tuple</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a tuple of values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_tuple">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_string" class="summary-sig-name">is_string</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the supplied value is a string.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_int_list" class="summary-sig-name">is_int_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a list of integers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_int_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_bool_list" class="summary-sig-name">is_bool_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a list of booleans.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_bool_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_float_list" class="summary-sig-name">is_float_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a list of floats.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_float_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_string_list" class="summary-sig-name">is_string_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a list of strings.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_string_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_ip_addr_list" class="summary-sig-name">is_ip_addr_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that the value is a list of IP addresses.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_ip_addr_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#force_list" class="summary-sig-name" onclick="show_private();">force_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">min</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">max</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Check that a value is a list, coercing strings into a list with one 
+      member.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#force_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_mixed_list" class="summary-sig-name">is_mixed_list</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">*args</span>)</span><br />
+      Check that the value is a list.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_mixed_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#is_option" class="summary-sig-name">is_option</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">*options</span>)</span><br />
+      This check matches the value to any of a set of options.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_option">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="pers.pylib3.validate-module.html#_test" class="summary-sig-name" onclick="show_private();">_test</a>(<span class="summary-sig-arg">value</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**keywargs</span>)</span><br />
+      A function that exists for test purposes.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#_test">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_test2"></a><span class="summary-sig-name">_test2</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#_test2">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_test3"></a><span class="summary-sig-name">_test3</span>()</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="pers.pylib3.validate-pysrc.html#_test3">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="unicode"></a><span class="summary-name">unicode</span> = <code title="lambda x:">lambda x:</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate-module.html#_list_arg" class="summary-name" onclick="show_private();">_list_arg</a> = <code title="re.compile(r'(?sx)(?:([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*list\(((?:\s*(?:(?\
+:&quot;.*?&quot;)|(?:\'.*?\')|(?:[^\'&quot;,\s\)][^,\)]*?))\s*,\s*)*(?:(?:&quot;.*?&quot;)|(?:\\
+'.*?\')|(?:[^\'&quot;,\s\)][^,\)]*?))?)\))')">re.compile(r'<code class="re-flags">(?sx)</code><code class="re-group">(?:</code><code class="re-group">(</code><code class="re-group">[</code>a<code class="re-op">-</code>zA<code class="re-op">-</code>Z_<code class="re-group">]</code><code class="re-group">[</code>a<code class="re-op">-</code>zA<code class="re-op">-</code>Z0<code class="re-op">-</code>9_<code class="re-group">]</code><code class="re-op">*</code><code class="re-group">)</code>\s<code class="re-op">*</code>=\<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate-module.html#_list_members" class="summary-name" onclick="show_private();">_list_members</a> = <code title="re.compile(r'(?sx)((?:&quot;.*?&quot;)|(?:\'.*?\')|(?:[^\'&quot;,\s=][^,=]*?))(?:(?:\\
+s*,\s*)|(?:\s*$))')">re.compile(r'<code class="re-flags">(?sx)</code><code class="re-group">(</code><code class="re-group">(?:</code>&quot;.<code class="re-op">*?</code>&quot;<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code>\'.<code class="re-op">*?</code>\'<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code><code class="re-group">[</code><code class="re-op">^</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate-module.html#_paramstring" class="summary-name" onclick="show_private();">_paramstring</a> = <code title="'''
+    (?:
+        (
+            (?:
+                [a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*list\\(
+                    (?:
+                        \\s*
+                        (?:
+..."><code class="variable-quote">'</code><code class="variable-string">\n    (?:\n        (\n            (?:\n       </code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate-module.html#_matchstring" class="summary-name" onclick="show_private();">_matchstring</a> = <code title="'''^
+    (?:
+        (
+            (?:
+                [a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*list\\(
+                    (?:
+                        \\s*
+                        (?:
+..."><code class="variable-quote">'</code><code class="variable-string">^\n    (?:\n        (\n            (?:\n      </code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate-module.html#bool_dict" class="summary-name" onclick="show_private();">bool_dict</a> = <code title="{False: False,
+ True: True,
+ '0': False,
+ '1': True,
+ 'false': False,
+ 'no': False,
+ 'off': False,
+ 'on': True,
+..."><code class="variable-group">{</code>False<code class="variable-op">: </code>False<code class="variable-op">, </code>True<code class="variable-op">: </code>True<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">0</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">1</code><code class="variable-quote">'</code><code class="variable-op">: </code>True<code class="variable-op">, </code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="pers.pylib3.validate-module.html#fun_dict" class="summary-name" onclick="show_private();">fun_dict</a> = <code title="{'integer': is_integer, 'float': is_float, 'ip_addr': is_ip_addr, 'str\
+ing': is_string, 'boolean': is_boolean,}">{'integer': is_integer, 'float': is_float, 'ip_addr<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'pers.pylib3'"><code class="variable-quote">'</code><code class="variable-string">pers.pylib3</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="dottedQuadToNum"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dottedQuadToNum</span>(<span class="sig-arg">ip</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#dottedQuadToNum">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Convert decimal dotted quad string to long integer</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>int(dottedQuadToNum(<span class="py-string">'1 '</span>))
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>int(dottedQuadToNum(<span class="py-string">' 1.2'</span>))
+<span class="py-output">16777218</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>int(dottedQuadToNum(<span class="py-string">' 1.2.3 '</span>))
+<span class="py-output">16908291</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>int(dottedQuadToNum(<span class="py-string">'1.2.3.4'</span>))
+<span class="py-output">16909060</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>dottedQuadToNum(<span class="py-string">'255.255.255.255'</span>)
+<span class="py-output">4294967295</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>dottedQuadToNum(<span class="py-string">'255.255.255.256'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">ValueError: Not a good dotted-quad IP: 255.255.255.256</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="numToDottedQuad"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">numToDottedQuad</span>(<span class="sig-arg">num</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#numToDottedQuad">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Convert int or long int to dotted quad string</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(-1))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">ValueError: Not a good numeric IP: -1</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(1))
+<span class="py-output">'0.0.0.1'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(16777218))
+<span class="py-output">'1.0.0.2'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(16908291))
+<span class="py-output">'1.2.0.3'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(16909060))
+<span class="py-output">'1.2.3.4'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(4294967295))
+<span class="py-output">'255.255.255.255'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(long(4294967296))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">ValueError: Not a good numeric IP: 4294967296</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(-1)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">ValueError: Not a good numeric IP: -1</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(1)
+<span class="py-output">'0.0.0.1'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(16777218)
+<span class="py-output">'1.0.0.2'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(16908291)
+<span class="py-output">'1.2.0.3'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(16909060)
+<span class="py-output">'1.2.3.4'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(4294967295)
+<span class="py-output">'255.255.255.255'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>numToDottedQuad(4294967296)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">ValueError: Not a good numeric IP: 4294967296</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_is_num_param"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_is_num_param</span>(<span class="sig-arg">names</span>,
+        <span class="sig-arg">values</span>,
+        <span class="sig-arg">to_float</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#_is_num_param">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return numbers from inputs or raise VdtParamError.</p>
+  <p>Lets ``None`` pass through. Pass in keyword argument ``to_float=True``
+  to use float for the conversion rather than int.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>_is_num_param((<span class="py-string">''</span>, <span class="py-string">''</span>), (0, 1.0))
+<span class="py-output">[0, 1]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>_is_num_param((<span class="py-string">''</span>, <span class="py-string">''</span>), (0, 1.0), to_float=True)
+<span class="py-output">[0.0, 1.0]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>_is_num_param((<span class="py-string">'a'</span>), (<span class="py-string">'a'</span>))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtParamError: passed an incorrect value &quot;a&quot; for parameter &quot;a&quot;.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_integer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_integer</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_integer">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>A check that tests that a given value is an integer (int, or long) and
+  optionally, between bounds. A negative value is accepted, while a float 
+  will fail.</p>
+  <p>If the value is a string, then the conversion is done - if possible. 
+  Otherwise a VdtError is raised.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer'</span>, <span class="py-string">'-1'</span>)
+<span class="py-output">-1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer'</span>, <span class="py-string">'0'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer'</span>, 9)
+<span class="py-output">9</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer'</span>, <span class="py-string">'a'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;a&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer'</span>, <span class="py-string">'2.2'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;2.2&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(10)'</span>, <span class="py-string">'20'</span>)
+<span class="py-output">20</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(max=20)'</span>, <span class="py-string">'15'</span>)
+<span class="py-output">15</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(10)'</span>, <span class="py-string">'9'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooSmallError: the value &quot;9&quot; is too small.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(10)'</span>, 9)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooSmallError: the value &quot;9&quot; is too small.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(max=20)'</span>, <span class="py-string">'35'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooBigError: the value &quot;35&quot; is too big.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(max=20)'</span>, 35)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooBigError: the value &quot;35&quot; is too big.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'integer(0, 9)'</span>, False)
+<span class="py-output">0</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_float"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_float</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_float">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>A check that tests that a given value is a float (an integer will be 
+  accepted), and optionally - that it is between bounds.</p>
+  <p>If the value is a string, then the conversion is done - if possible. 
+  Otherwise a VdtError is raised.</p>
+  <p>This can accept negative values.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float'</span>, <span class="py-string">'2'</span>)
+<span class="py-output">2.0</span></pre>
+  <p>From now on we multiply the value to avoid comparing decimals</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float'</span>, <span class="py-string">'-6.8'</span>) * 10
+<span class="py-output">-68.0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float'</span>, <span class="py-string">'12.2'</span>) * 10
+<span class="py-output">122.0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float'</span>, 8.4) * 10
+<span class="py-output">84.0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float'</span>, <span class="py-string">'a'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;a&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float(10.1)'</span>, <span class="py-string">'10.2'</span>) * 10
+<span class="py-output">102.0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float(max=20.2)'</span>, <span class="py-string">'15.1'</span>) * 10
+<span class="py-output">151.0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float(10.0)'</span>, <span class="py-string">'9.0'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooSmallError: the value &quot;9.0&quot; is too small.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float(max=20.0)'</span>, <span class="py-string">'35.0'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooBigError: the value &quot;35.0&quot; is too big.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_boolean"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_boolean</span>(<span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_boolean">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check if the value represents a boolean.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, 0)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, False)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'0'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'off'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'false'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'no'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'nO'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'NO'</span>)
+<span class="py-output">0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, 1)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, True)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'1'</span>)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'on'</span>)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'true'</span>)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'yes'</span>)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'Yes'</span>)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'YES'</span>)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">''</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'boolean'</span>, <span class="py-string">'up'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;up&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_ip_addr"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_ip_addr</span>(<span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_ip_addr">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the supplied value is an Internet Protocol address, v.4, 
+  represented by a dotted-quad string, i.e. '1.2.3.4'.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">'1 '</span>)
+<span class="py-output">'1'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">' 1.2'</span>)
+<span class="py-output">'1.2'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">' 1.2.3 '</span>)
+<span class="py-output">'1.2.3'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">'1.2.3.4'</span>)
+<span class="py-output">'1.2.3.4'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">'0.0.0.0'</span>)
+<span class="py-output">'0.0.0.0'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">'255.255.255.255'</span>)
+<span class="py-output">'255.255.255.255'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">'255.255.255.256'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueError: the value &quot;255.255.255.256&quot; is unacceptable.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, <span class="py-string">'1.2.3.4.5'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueError: the value &quot;1.2.3.4.5&quot; is unacceptable.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr'</span>, 0)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;0&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a list of values.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>It does no check on list members.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list'</span>, (1, 2))
+<span class="py-output">[1, 2]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list'</span>, [1, 2])
+<span class="py-output">[1, 2]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list(3)'</span>, (1, 2))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooShortError: the value &quot;(1, 2)&quot; is too short.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list(max=5)'</span>, (1, 2, 3, 4, 5, 6))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooLongError: the value &quot;(1, 2, 3, 4, 5, 6)&quot; is too long.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list(min=3, max=5)'</span>, (1, 2, 3, 4))
+<span class="py-output">[1, 2, 3, 4]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list'</span>, 0)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;0&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'list'</span>, <span class="py-string">'12'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;12&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_tuple"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_tuple</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_tuple">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a tuple of values.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>It does no check on members.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple'</span>, ())
+<span class="py-output">()</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple'</span>, [])
+<span class="py-output">()</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple'</span>, (1, 2))
+<span class="py-output">(1, 2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple'</span>, [1, 2])
+<span class="py-output">(1, 2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple(3)'</span>, (1, 2))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooShortError: the value &quot;(1, 2)&quot; is too short.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple(max=5)'</span>, (1, 2, 3, 4, 5, 6))
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooLongError: the value &quot;(1, 2, 3, 4, 5, 6)&quot; is too long.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple(min=3, max=5)'</span>, (1, 2, 3, 4))
+<span class="py-output">(1, 2, 3, 4)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple'</span>, 0)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;0&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'tuple'</span>, <span class="py-string">'12'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;12&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_string"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_string</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_string">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the supplied value is a string.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string'</span>, <span class="py-string">'0'</span>)
+<span class="py-output">'0'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string'</span>, 0)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;0&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string(2)'</span>, <span class="py-string">'12'</span>)
+<span class="py-output">'12'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string(2)'</span>, <span class="py-string">'1'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooShortError: the value &quot;1&quot; is too short.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string(min=2, max=3)'</span>, <span class="py-string">'123'</span>)
+<span class="py-output">'123'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string(min=2, max=3)'</span>, <span class="py-string">'1234'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueTooLongError: the value &quot;1234&quot; is too long.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_int_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_int_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_int_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a list of integers.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>Each list member is checked that it is an integer.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'int_list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'int_list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'int_list'</span>, (1, 2))
+<span class="py-output">[1, 2]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'int_list'</span>, [1, 2])
+<span class="py-output">[1, 2]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'int_list'</span>, [1, <span class="py-string">'a'</span>])
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;a&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_bool_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_bool_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_bool_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a list of booleans.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>Each list member is checked that it is a boolean.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'bool_list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'bool_list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>check_res = vtor.check(<span class="py-string">'bool_list'</span>, (True, False))
+<span class="py-prompt">&gt;&gt;&gt; </span>check_res == [True, False]
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>check_res = vtor.check(<span class="py-string">'bool_list'</span>, [True, False])
+<span class="py-prompt">&gt;&gt;&gt; </span>check_res == [True, False]
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'bool_list'</span>, [True, <span class="py-string">'a'</span>])
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;a&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_float_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_float_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_float_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a list of floats.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>Each list member is checked that it is a float.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float_list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float_list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float_list'</span>, (1, 2.0))
+<span class="py-output">[1.0, 2.0]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float_list'</span>, [1, 2.0])
+<span class="py-output">[1.0, 2.0]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'float_list'</span>, [1, <span class="py-string">'a'</span>])
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;a&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_string_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_string_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_string_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a list of strings.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>Each list member is checked that it is a string.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string_list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string_list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string_list'</span>, (<span class="py-string">'a'</span>, <span class="py-string">'b'</span>))
+<span class="py-output">['a', 'b']</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string_list'</span>, [<span class="py-string">'a'</span>, 1])
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;1&quot; is of the wrong type.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'string_list'</span>, <span class="py-string">'hello'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;hello&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_ip_addr_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_ip_addr_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_ip_addr_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that the value is a list of IP addresses.</p>
+  <p>You can optionally specify the minimum and maximum number of 
+  members.</p>
+  <p>Each list member is checked that it is an IP address.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr_list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr_list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr_list'</span>, (<span class="py-string">'1.2.3.4'</span>, <span class="py-string">'5.6.7.8'</span>))
+<span class="py-output">['1.2.3.4', '5.6.7.8']</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'ip_addr_list'</span>, [<span class="py-string">'a'</span>])
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueError: the value &quot;a&quot; is unacceptable.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="force_list"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">force_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">min</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">max</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#force_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Check that a value is a list, coercing strings into a list with one 
+  member. Useful where users forget the trailing comma that turns a single 
+  value into a list.</p>
+  <p>You can optionally specify the minimum and maximum number of members. 
+  A minumum of greater than one will fail if the user only supplies a 
+  string.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'force_list'</span>, ())
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'force_list'</span>, [])
+<span class="py-output">[]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'force_list'</span>, <span class="py-string">'hello'</span>)
+<span class="py-output">['hello']</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_mixed_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_mixed_list</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">*args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_mixed_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Check that the value is a list.
+Allow specifying the type of each member.
+Work on lists of specific lengths.
+
+You specify each member as a positional argument specifying type
+
+Each type should be one of the following strings :
+  'integer', 'float', 'ip_addr', 'string', 'boolean'
+
+So you can specify a list of two strings, followed by
+two integers as :
+
+  mixed_list('string', 'string', 'integer', 'integer')
+
+The length of the list must match the number of positional
+arguments you supply.
+
+&gt;&gt;&gt; mix_str = &quot;mixed_list('integer', 'float', 'ip_addr', 'string', 'boolean')&quot;
+&gt;&gt;&gt; check_res = vtor.check(mix_str, (1, 2.0, '1.2.3.4', 'a', True))
+&gt;&gt;&gt; check_res == [1, 2.0, '1.2.3.4', 'a', True]
+1
+&gt;&gt;&gt; check_res = vtor.check(mix_str, ('1', '2.0', '1.2.3.4', 'a', 'True'))
+&gt;&gt;&gt; check_res == [1, 2.0, '1.2.3.4', 'a', True]
+1
+&gt;&gt;&gt; vtor.check(mix_str, ('b', 2.0, '1.2.3.4', 'a', True))
+Traceback (most recent call last):
+VdtTypeError: the value &quot;b&quot; is of the wrong type.
+&gt;&gt;&gt; vtor.check(mix_str, (1, 2.0, '1.2.3.4', 'a'))
+Traceback (most recent call last):
+VdtValueTooShortError: the value &quot;(1, 2.0, '1.2.3.4', 'a')&quot; is too short.
+&gt;&gt;&gt; vtor.check(mix_str, (1, 2.0, '1.2.3.4', 'a', 1, 'b'))
+Traceback (most recent call last):
+VdtValueTooLongError: the value &quot;(1, 2.0, '1.2.3.4', 'a', 1, 'b')&quot; is too long.
+&gt;&gt;&gt; vtor.check(mix_str, 0)
+Traceback (most recent call last):
+VdtTypeError: the value &quot;0&quot; is of the wrong type.
+
+&gt;&gt;&gt; vtor.check('mixed_list(&quot;yoda&quot;)', ('a'))
+Traceback (most recent call last):
+VdtParamError: passed an incorrect value &quot;KeyError('yoda',)&quot; for parameter &quot;'mixed_list'&quot;
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_option"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_option</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">*options</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#is_option">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This check matches the value to any of a set of options.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'option(&quot;yoda&quot;, &quot;jedi&quot;)'</span>, <span class="py-string">'yoda'</span>)
+<span class="py-output">'yoda'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'option(&quot;yoda&quot;, &quot;jedi&quot;)'</span>, <span class="py-string">'jed'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtValueError: the value &quot;jed&quot; is unacceptable.</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>vtor.check(<span class="py-string">'option(&quot;yoda&quot;, &quot;jedi&quot;)'</span>, 0)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">VdtTypeError: the value &quot;0&quot; is of the wrong type.</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_test"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_test</span>(<span class="sig-arg">value</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**keywargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="pers.pylib3.validate-pysrc.html#_test">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>A function that exists for test purposes.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>checks = [
+<span class="py-more">... </span>    <span class="py-string">'3, 6, min=1, max=3, test=list(a, b, c)'</span>,
+<span class="py-more">... </span>    <span class="py-string">'3'</span>,
+<span class="py-more">... </span>    <span class="py-string">'3, 6'</span>,
+<span class="py-more">... </span>    <span class="py-string">'3,'</span>,
+<span class="py-more">... </span>    <span class="py-string">'min=1, test=&quot;a b c&quot;'</span>,
+<span class="py-more">... </span>    <span class="py-string">'min=5, test=&quot;a, b, c&quot;'</span>,
+<span class="py-more">... </span>    <span class="py-string">'min=1, max=3, test=&quot;a, b, c&quot;'</span>,
+<span class="py-more">... </span>    <span class="py-string">'min=-100, test=-99'</span>,
+<span class="py-more">... </span>    <span class="py-string">'min=1, max=3'</span>,
+<span class="py-more">... </span>    <span class="py-string">'3, 6, test=&quot;36&quot;'</span>,
+<span class="py-more">... </span>    <span class="py-string">'3, 6, test=&quot;a, b, c&quot;'</span>,
+<span class="py-more">... </span>    <span class="py-string">'3, max=3, test=list(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)'</span>,
+<span class="py-more">... </span>    <span class="py-string">'''3, max=3, test=list(&quot;'a'&quot;, 'b', &quot;x=(c)&quot;)'''</span>,
+<span class="py-more">... </span>    <span class="py-string">&quot;test='x=fish(3)'&quot;</span>,
+<span class="py-more">... </span>   ]
+<span class="py-prompt">&gt;&gt;&gt; </span>v = Validator({<span class="py-string">'test'</span>: _test})
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> entry <span class="py-keyword">in</span> checks:
+<span class="py-more">... </span>    pprint(v.check((<span class="py-string">'test(%s)'</span> % entry), 3))
+<span class="py-output">(3, ('3', '6'), {'max': '3', 'min': '1', 'test': ['a', 'b', 'c']})</span>
+<span class="py-output">(3, ('3',), {})</span>
+<span class="py-output">(3, ('3', '6'), {})</span>
+<span class="py-output">(3, ('3',), {})</span>
+<span class="py-output">(3, (), {'min': '1', 'test': 'a b c'})</span>
+<span class="py-output">(3, (), {'min': '5', 'test': 'a, b, c'})</span>
+<span class="py-output">(3, (), {'max': '3', 'min': '1', 'test': 'a, b, c'})</span>
+<span class="py-output">(3, (), {'min': '-100', 'test': '-99'})</span>
+<span class="py-output">(3, (), {'max': '3', 'min': '1'})</span>
+<span class="py-output">(3, ('3', '6'), {'test': '36'})</span>
+<span class="py-output">(3, ('3', '6'), {'test': 'a, b, c'})</span>
+<span class="py-output">(3, ('3',), {'max': '3', 'test': ['a', 'b', 'c']})</span>
+<span class="py-output">(3, ('3',), {'max': '3', 'test': [&quot;'a'&quot;, 'b', 'x=(c)']})</span>
+<span class="py-output">(3, (), {'test': 'x=fish(3)'})</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>v = Validator()
+<span class="py-prompt">&gt;&gt;&gt; </span>v.check(<span class="py-string">'integer(default=6)'</span>, <span class="py-string">'3'</span>)
+<span class="py-output">3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.check(<span class="py-string">'integer(default=6)'</span>, None, True)
+<span class="py-output">6</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(<span class="py-string">'integer(default=6)'</span>)
+<span class="py-output">6</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(<span class="py-string">'float(default=6)'</span>)
+<span class="py-output">6.0</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(<span class="py-string">'pass(default=None)'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(<span class="py-string">&quot;string(default='None')&quot;</span>)
+<span class="py-output">'None'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(<span class="py-string">'pass'</span>)
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">KeyError: 'Check &quot;pass&quot; has no default value.'</span>
+<span class="py-except"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(<span class="py-string">'pass(default=list(1, 2, 3, 4))'</span>)
+<span class="py-output">['1', '2', '3', '4']</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>v = Validator()
+<span class="py-prompt">&gt;&gt;&gt; </span>v.check(<span class="py-string">&quot;pass(default=None)&quot;</span>, None, True)
+<span class="py-prompt">&gt;&gt;&gt; </span>v.check(<span class="py-string">&quot;pass(default='None')&quot;</span>, None, True)
+<span class="py-output">'None'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.check(<span class="py-string">'pass(default=&quot;None&quot;)'</span>, None, True)
+<span class="py-output">'None'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.check(<span class="py-string">'pass(default=list(1, 2, 3, 4))'</span>, None, True)
+<span class="py-output">['1', '2', '3', '4']</span></pre>
+  <p>Bug test for unicode arguments &gt;&gt;&gt; v = Validator() 
+  &gt;&gt;&gt; v.check(unicode('string(min=4)'), unicode('test')) == 
+  unicode('test') True</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>v = Validator()
+<span class="py-prompt">&gt;&gt;&gt; </span>v.get_default_value(unicode(<span class="py-string">'string(min=4, default=&quot;1234&quot;)'</span>)) == unicode(<span class="py-string">'1234'</span>)
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>v.check(unicode(<span class="py-string">'string(min=4, default=&quot;1234&quot;)'</span>), unicode(<span class="py-string">'test'</span>)) == unicode(<span class="py-string">'test'</span>)
+<span class="py-output">True</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>v = Validator()
+<span class="py-prompt">&gt;&gt;&gt; </span>default = v.get_default_value(<span class="py-string">'string(default=None)'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>default == None
+<span class="py-output">1</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="_list_arg"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_list_arg</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+re.compile(r'<code class="re-flags">(?sx)</code><code class="re-group">(?:</code><code class="re-group">(</code><code class="re-group">[</code>a<code class="re-op">-</code>zA<code class="re-op">-</code>Z_<code class="re-group">]</code><code class="re-group">[</code>a<code class="re-op">-</code>zA<code class="re-op">-</code>Z0<code class="re-op">-</code>9_<code class="re-group">]</code><code class="re-op">*</code><code class="re-group">)</code>\s<code class="re-op">*</code>=\s<code class="re-op">*</code>list\(<code class="re-group">(</code><code class="re-group">(?:</code>\s<code class="re-op">*</code><code class="re-group">(?:</code><code class="re-group">(?</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="re-group">:</code>&quot;.<code class="re-op">*?</code>&quot;<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code>\'.<code class="re-op">*?</code>\'<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code><code class="re-group">[</code><code class="re-op">^</code>\'&quot;,\s\)<code class="re-group">]</code><code class="re-group">[</code><code class="re-op">^</code>,\)<code class="re-group">]</code><code class="re-op">*?</code><code class="re-group">)</code><code class="re-group">)</code>\s<code class="re-op">*</code>,\s<code class="re-op">*</code><code class="re-group">)</code><code class="re-op">*</code><code class="re-group">(?:</code><code class="re-group">(?:</code>&quot;.<code class="re-op">*?</code>&quot;<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code>\<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+'.<code class="re-op">*?</code>\'<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code><code class="re-group">[</code><code class="re-op">^</code>\'&quot;,\s\)<code class="re-group">]</code><code class="re-group">[</code><code class="re-op">^</code>,\)<code class="re-group">]</code><code class="re-op">*?</code><code class="re-group">)</code><code class="re-group">)</code><code class="re-op">?</code><code class="re-group">)</code>\)<code class="re-group">)</code>')
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_list_members"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_list_members</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+re.compile(r'<code class="re-flags">(?sx)</code><code class="re-group">(</code><code class="re-group">(?:</code>&quot;.<code class="re-op">*?</code>&quot;<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code>\'.<code class="re-op">*?</code>\'<code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code><code class="re-group">[</code><code class="re-op">^</code>\'&quot;,\s=<code class="re-group">]</code><code class="re-group">[</code><code class="re-op">^</code>,=<code class="re-group">]</code><code class="re-op">*?</code><code class="re-group">)</code><code class="re-group">)</code><code class="re-group">(?:</code><code class="re-group">(?:</code>\<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+s<code class="re-op">*</code>,\s<code class="re-op">*</code><code class="re-group">)</code><code class="re-op">|</code><code class="re-group">(?:</code>\s<code class="re-op">*</code>$<code class="re-group">)</code><code class="re-group">)</code>')
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_paramstring"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_paramstring</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string"></code>
+<code class="variable-string">    (?:</code>
+<code class="variable-string">        (</code>
+<code class="variable-string">            (?:</code>
+<code class="variable-string">                [a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*list\\(</code>
+<code class="variable-string">                    (?:</code>
+<code class="variable-string">                        \\s*</code>
+<code class="variable-string">                        (?:</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_matchstring"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_matchstring</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string">^</code>
+<code class="variable-string">    (?:</code>
+<code class="variable-string">        (</code>
+<code class="variable-string">            (?:</code>
+<code class="variable-string">                [a-zA-Z_][a-zA-Z0-9_]*\\s*=\\s*list\\(</code>
+<code class="variable-string">                    (?:</code>
+<code class="variable-string">                        \\s*</code>
+<code class="variable-string">                        (?:</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="bool_dict"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">bool_dict</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code>False<code class="variable-op">: </code>False<code class="variable-op">,</code>
+ True<code class="variable-op">: </code>True<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">0</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">1</code><code class="variable-quote">'</code><code class="variable-op">: </code>True<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">false</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">no</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">off</code><code class="variable-quote">'</code><code class="variable-op">: </code>False<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">on</code><code class="variable-quote">'</code><code class="variable-op">: </code>True<code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fun_dict"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">fun_dict</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+{'integer': is_integer, 'float': is_float, 'ip_addr': is_ip_addr, 'str<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ing': is_string, 'boolean': is_boolean,}
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Apr  6 15:36:13 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
