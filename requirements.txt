@@ -1,0 +1,10 @@
+epydoc - a python module that helps generate documentation by inspecting code.
+To install, 
+
+	Debian / Ubuntu run:
+		# apt-get install epydoc-doc
+		apt-get install python-epydoc
+	
+	CentOS / RedHat
+		# yum install epydoc-doc
+		yum install python-epydoc
