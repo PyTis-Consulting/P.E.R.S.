@@ -4,7 +4,9 @@ To install,
 	Debian / Ubuntu run:
 		# apt-get install epydoc-doc
 		apt-get install python-epydoc
+		apt-get install  python-six
 	
 	CentOS / RedHat
 		# yum install epydoc-doc
 		yum install python-epydoc
+		yum install  python-six
