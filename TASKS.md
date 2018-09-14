@@ -14,13 +14,13 @@ pytis_tools.ini.
 TODO - Meging
 -------------
 
-I''ve recently come to the realization, after spending ours merging pytis.py and
-pytis3.py for the 3rd tiem, that it would make more sence to merge them back
-into a single file, do away with pylib and pylib3, and handle language version
-difference within the file.  99.9% of pytis is the same as pytis3, the subtle
-differences could be coded around right there in the file itself.
-	** Thusfar, the pytis libraries have been merged, however "pylib" and
-	"pylib3" still need to be merged.
+I''ve recently come to the realization, after spending ours merging pytis.py 
+and pytis3.py for the 3rd tiem, that it would make more sence to merge them
+back into a single file, do away with pylib and pylib3, and handle language
+version difference within the file.  99.9% of pytis is the same as pytis3, the
+subtle differences could be coded around right there in the file itself.  **
+Thusfar, the pytis libraries have been merged, however "pylib" and "pylib3"
+still need to be merged.
 
 TODO - ITEM 2
 -------------
@@ -42,4 +42,6 @@ these as well.
 Need to learn git branching, so I can have one branch for W.I.P. and one for
 completed, functional scripts.
 
-
+I need to break out the Database interaction into a module with a parent layer.
+This way a user can pick and choose which Database that he/she wishes to use. 
+I would like to have first release support PostgreSQL, MySQL and Sqlite3.
