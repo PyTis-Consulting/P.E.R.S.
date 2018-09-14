@@ -32,31 +32,54 @@ class ExchangeRate(object):
 
 class Service(PyTis.cldict):
 	log = None
-	_name = "generic_service"
+	name = "generic_service"
 	_parent = None
-
-	
-	@classmethod
-	def name(cls):
-		return cls._name
+	instanuated = 'False'
 
 	def __init__(self, parent):
-		self.name = self.nameB
 		self._parent = parent
 		self.log = self.parent.log
+		self.instanuated = 'True'
+		#print dir(self)
 		#self.setup()
-
+		self.is_instantuated = self.is_instantuated2
 		self.log.debug("__init__ of Service '%s' from parent Service module " \
 			"complete" % self.name)
 			
+
+	@classmethod
+	def dead(cls):
+		return "dead"
+
+	@property
+	def alive(self):
+		return ".alive"
+
+	def is_instantuated2(self):
+		print 'inst method'
+		return self.instanuated
+
+	@classmethod
+	def is_instantuated(cls):
+		print 'cls method'
+		return cls.instanuated
+
+	'''
+	def get_name(self):
+		return self._name
+	name = property(get_name)
+	'''
+
+	"""
+	@classmethod
+	def name(cls):
+		return cls._name
+	"""
+	
 	@property
 	def parent(self):
 		return self._parent
 	
-	@property
-	def nameB(self):
-		return self._name
-
 	@classmethod
 	def displayed_name(cls):
 		return cls._name
@@ -78,6 +101,25 @@ class Service(PyTis.cldict):
 	def run(self):
 		pass
 
+	"""
+	def __getattribute__(self, key):
+		print "__getattribute__|key: %s" % key
+		if key == 'name':
+			return PyTis.cldict.__getattribute__(self, '_%s' % key)
+		return PyTis.cldict.__getattribute__(self, key)
+
+	def __attr_get(self,key):
+		print "__attr_get|key:%s" % key
+		return PyTis.cldict.__attr_get(self, key)
+
+	def __getattr__(self,key):
+		print "__getattr__|key:%s" % key
+		return PyTis.cldict.__getattr__(self, key)
+
+	def __getitem__(self, key):
+		print "__getitem__|key:%s" % key
+		return PyTis.cldict.__getitem__(self, key)
+	"""
 
 #class ServiceManager(PyTis.cldict, ODict):
 class ServiceManager(ODict):
@@ -106,13 +148,14 @@ class ServiceManager(ODict):
 	def getServices(self):
 		""" returns list of dicts for iteration
 		"""
-		return [v for v in self._services.values()]	
+		return [v for v in self.values()]	
+		# return [v for v in self._services.values()]	
 			
 	def getService(self, name):
 		""" return a service, looked up by name
 		"""
 		return self._services[name]
-		
+
 	def __getitem__(self, key):
 		if PyTis.is_int(key):
 			try:
@@ -142,8 +185,11 @@ class ServiceManager(ODict):
 		labels.sort()
 		return labels
 
-	def importServices(self):
+	def initializeServices(self):
+		log=self.log
+
 		for mod_name in self._services.keys():
+			log.fatal('mod name is: %s' % mod_name)
 			mod_filename = __import__(mod_name)
 			obj = getattr(mod_filename,mod_name)
 			#obj.log = self.log
@@ -151,9 +197,11 @@ class ServiceManager(ODict):
 			inst.path = self._services[mod_name].path
 
 			self._services[mod_name] = inst
+			self.data[mod_name] = inst
 
 			self.log.debug('mod_filename: %s, dir %s' % (mod_name, 
 				self.module_base_dir))
+
 
 		return 0
 
@@ -170,53 +218,51 @@ class ServiceManager(ODict):
 		"""
 		# first, lets make sure we know the module directory, where it is, and that
 		# it does indeed exist
-
+		log=self.log
 		if not os.path.exists(self.module_base_dir):
 			# We have a BIG problem, no modules directory.
 			self.log.debug("Modules directory is missing!")
 			self.log.debug("Modules directory path should be: %s" % \
 				self.module_base_dir)
+			# create it now?
+
 			sys.exit(1)
 				
 		# Now let's add it to the system path (only if it isn't already there).
 		if self.module_base_dir not in sys.path:
 			sys.path.insert(0,self.module_base_dir)
 
+		# ignore the __init__.py file.
+		# ignore *.pyc files
 		mod_files=[f for f in glob.glob(os.path.join(self.module_base_dir,'*.py')) \
-			# ignore the __init__.py file.
 			if not os.path.basename(f).startswith('__')]
 
-		mod_files.sort()
 		# helps these be stored alphabetically.
+		mod_files.sort()
 
 		for mod_filename in mod_files:
-			os.path.basename(mod_filename)[\
+			name = os.path.basename(mod_filename)[\
 					:len(os.path.basename(mod_filename))-3]
-			
-			o = ODict()
-			o['name'] = os.path.basename(mod_filename)[\
-				:len(os.path.basename(mod_filename))-3]
-			o['path'] = mod_filename
-			
-			self._services[o.name] = o
-
-
-			mod_filename = __import__(o.name)
-			obj = getattr(mod_filename, o.name)
-			obj.path = mod_filename
 
 			self.log.debug("ABOUT TO REGISTER INSTANCE")	
-			#self.log.warn(obj.path)
-			self._services[o.name]['obj'] = obj(self)
+			mod_file = __import__(name)
+			obj = getattr(mod_file, name)
+			obj.module = mod_file
+			obj.path = mod_filename
+			obj.filename = obj.basename = os.path.basename(mod_filename)
+			obj.dirname = os.path.abspath(os.path.dirname(mod_filename))
+			
+			log.info("mod_filename: %s" % mod_filename)
+			log.info("mod_file: %s\n" % mod_file)
+			log.info("obj.module: %s" % obj.module)
+			log.info("obj.path: %s" % obj.path)
+			log.info("obj.name: %s" % obj.name)
+			log.info("obj.basename: %s" % obj.basename)
+			log.info("obj.filename: %s" % obj.filename)
+			log.info("obj.dirname: %s\n\n\n" % obj.dirname)
 
-			self.__setitem__(o.name, o) 
-			'''
-			def __setitem__(self, key, item):
-				UserDict.__setitem__(self, key, item)
-				if key not in self._keys: self._keys.append(key)
-			'''
 
-			#self.log.warn(obj.path)
+			self.__setitem__(name, obj)
 			self.log.debug("REGISTERED THE INSTANCE")	
 
 		return 0

@@ -34,6 +34,7 @@ import re
 import sys
 import glob
 import time
+import types
 import errno
 import pydoc
 import atexit
@@ -59,7 +60,8 @@ if python_version >= 3.0:
 	class PermissionError(Exception): pass
 	from pylib3 import configobj as COBJ
 	from pylib3 import parse
-	from pylib3.util.dicts import odict
+	#from pylib3.util.dicts import odict
+	from pylib3.util.dicts import cldict, default_dict, default_set_dict, odict
 else:
 	from UserDict import UserDict
 	from cStringIO import StringIO
@@ -68,7 +70,8 @@ else:
 	# internal (mine/yours/ours) 
 	from pylib import configobj as COBJ
 	from pylib import parse
-	from pylib.util.dicts import odict
+	#from pylib.util.dicts import odict
+	from pylib.util.dicts import cldict, default_dict, default_set_dict, odict
 import configure as pytis_configure # (imports configdir and logdir)
 #from pylib import pyservice
 
@@ -161,6 +164,8 @@ class IdiotError(Exception): pass
 class FileExists(UserWarning): pass
 class EmptyString(Exception): pass
 class FileNotFound(UserWarning): pass
+class InvalidInput(Exception): pass
+InputError=InvalidInput
 class FutureFeature(Exception): pass
 class EmptyTemplate(FileNotFound): pass
 class ProgrammerError(Exception): pass
@@ -216,8 +221,10 @@ def conjoin(unknown,errors=[]):
 class NullLogHandler(logging.Handler):
 	def emit(self, record): pass
 
-#class MyThread(threading.Thread):
-class MyThread(object):
+## XXX-TODO TODAY XXX XXX
+class MyThread(threading.Thread):
+#class MyThread(object):
+## XXX-TODO TODAY XXX XXX
 
 	_pid = None # Process ID
 	_pidfile = None # Instance of Pidfile management class
@@ -280,37 +287,6 @@ class MyThread(object):
 		return self._parent
 	parent = property(get_parent, set_parent)
 
-	# IO Niceness Class (0,1,2,3)
-	def set_ioniceness_class(self, ioniceness_class):
-		self._ioniceness_class = ioniceness_class
-	def get_ioniceness_class(self):
-		if not self._ioniceness_class:
-			try: 
-				self._ioniceness_class = opts.ioniceness_class
-			except AttributeError as e: 
-			# could set to default here, but that happens anyways right below 
-				pass 
-			# if there still is not one, perhaps opts.ioniceness_class was none
-			if not self._ioniceness_class: 
-				self.ioniceness_class = self.default_ioniceness_class 
-		return self._ioniceness_class
-	ioniceness_class = property(get_ioniceness_class, set_ioniceness_class)
-
-
-	# IO Niceness (Classdata 0-7)
-	def set_ioniceness(self, ioniceness):
-		self._ioniceness = ioniceness
-	def get_ioniceness(self):
-		if not self._ioniceness: self.ioniceness = self.default_ioniceness
-		return self._ioniceness
-	ioniceness = property(get_ioniceness, set_ioniceness)
-
-	def set_niceness(self, niceness):
-		self._niceness = niceness
-	def get_niceness(self):
-		if not self._niceness: self.niceness = self.default_niceness
-		return self._niceness
-	niceness = property(get_niceness, set_niceness)
 
 	def set_callbacks(self, i):
 		self._callbacks.append(i)
@@ -335,11 +311,13 @@ class MyThread(object):
 
 	def __init__(self):
 		global log
+## XXX-TODO TODAY XXX XXX
+		threading.Thread.__init__(self, target=self.Run, name='PyTis-Thread')
+## XXX-TODO TODAY XXX XXX
 		self.keep_going=True
 		if log is not None:
 			self.setLogFile(log)
 		atexit.register(self.stop)
-		#threading.Thread.__init__(self)
 
 	def start(self):
 		''' You should override this method when you subclass Process.
@@ -367,42 +345,6 @@ signal.SIGTERM'''
 		except RuntimeError as e:
 			#print >> sys.stderr, e
 			sys.stderr.write("%s\n" % str(e))
-
-	def service(self, opts):
-		''' alias for self.control with the "action" pulled out of opts and passed 
-		in seperately
-		'''
-		try:
-			self.action = opts.action
-		except AttributeError as e:
-			if type(opts) is type(str()) and opts.lower() in ('start','stop',
-			'restart','status'):
-				self.action=opts
-			else:
-				raise ProgrammerError("optparse action is missing, to " \
-					"use MyThread.service optparse must have a valid action " \
-					"(start,stop,restart,status)")
-		try:
-			self.niceness = opts.niceness
-		except AttributeError as e:
-			self.niceness = self.default_niceness
-
-		try:
-			self.ioniceness_class = opts.ioniceness_class
-		except AttributeError as e:
-			self.ioniceness_class = self.default_ioniceness_class
-
-		try:
-			self.ioniceness = opts.ioniceness
-		except AttributeError as e:
-			self.ioniceness = self.default_ioniceness
-	
-		try:
-			self.frequency = int(opts.frequency)
-		except (AttributeError, NameError, ValueError) as e:
-			self.frequency = self.default_frequency
-
-		return self.control(self.action)
 
 	def register(self, run, *args,**kwargs):
 		'''
@@ -583,6 +525,127 @@ limit - default maximum for the number of available file descriptors.
 		self.log.info('restarting [%s] service.' % self.parent_name)
 		self.Stop()
 		self.Start()
+
+	# IO (Hard Drive) Niceness Class (0,1,2,3)
+	def set_ioniceness_class(self, ioniceness_class):
+		self._ioniceness_class = ioniceness_class
+	def get_ioniceness_class(self):
+		if not self._ioniceness_class:
+			try: 
+				self._ioniceness_class = opts.ioniceness_class
+			except AttributeError as e: 
+			# could set to default here, but that happens anyways right below 
+				pass 
+			# if there still is not one, perhaps opts.ioniceness_class was none
+			if not self._ioniceness_class: 
+				self.ioniceness_class = self.default_ioniceness_class 
+		return self._ioniceness_class
+	ioniceness_class = property(get_ioniceness_class, set_ioniceness_class)
+
+	# IO (Hard Drive) Niceness (Classdata 0-7)
+	def set_ioniceness(self, ioniceness):
+		self._ioniceness = ioniceness
+	def get_ioniceness(self):
+		if not self._ioniceness: self.ioniceness = self.default_ioniceness
+		return self._ioniceness
+	ioniceness = property(get_ioniceness, set_ioniceness)
+
+	# CPU Nicenes
+	def set_niceness(self, niceness):
+		self._niceness = niceness
+	def get_niceness(self):
+		if not self._niceness: 
+			self._niceness = self.default_niceness
+		# Final check, to make sure an invalid niceity hasn't been set.
+		if self._niceness not in range(-20,20):
+			self.log.warn("Invalid nicity specified.")
+			self._niceness = self.default_niceness
+		return self._niceness
+	niceness = property(get_niceness, set_niceness)
+
+	def buildNice(self):
+		""" To control the niceness to the CPU, the niceness is used for children
+		processes, to pass this onto child processes (client) from a parent
+		(server).
+
+		This method returns a list, so it can be extended and/or passed into
+		external commands, and child processes.
+
+		Example:
+
+			cmd_list = self.buildIoNice()
+			cmd_list.extend(self.buildNice())
+			cmd_list.extend(["nmap","-vv"])
+			subprocess.call(cmd_list)
+
+		"""
+		if self.niceness not in range(-20,20):
+			self.log.warn("Invalid nicity specified.")
+			self.niceness = self.default_niceness
+
+		return ['nice', '-n%s' % self.niceness]
+
+	def setNiceness(self):
+		""" To control the niceness to the CPU, the niceness is used to control the
+			"nicity" to the Central Processing Unit (CPU). This method tells the
+			instance to begin using whichever value has been set. If none has been set
+			the default getters/setters will return the built in default niceness.
+
+			This method specifically, tells the instance to set the niceness locally,
+			for the current, running process.
+		"""
+		try:
+			os.nice(self.opts.niceness)
+		except (AttributeError, NameError), e:
+			pass
+
+	def buildIoNice(self):
+		if self.ioniceness_class not in (1,2,3):
+			self.log.warn("Invalid ionice class specified.")
+			self.ioniceness_class = self.default_ioniceness_class
+
+		if self.ioniceness not in range(0,8):
+			self.log.warn("Invalid ionice classdata specified.")
+			self.ioniceness = self.default_ioniceness
+		if self.ioniceness_class ==3:
+			return ['ionice', '-c3']
+		return ['ionice', '-c%s' % self.ioniceness_class, '-n%s' % self.ioniceness]
+
+	def service(self, opts):
+		''' alias for self.control with the "action" pulled out of opts and passed 
+		in seperately
+		'''
+		try:
+			self.action = opts.action
+		except AttributeError as e:
+			if type(opts) is type(str()) and opts.lower() in ('start','stop',
+			'restart','status'):
+				self.action=opts
+			else:
+				raise ProgrammerError("optparse action is missing, to " \
+					"use MyThread.service optparse must have a valid action " \
+					"(start,stop,restart,status)")
+		try:
+			self.niceness = opts.niceness
+		except AttributeError as e:
+			self.niceness = self.default_niceness
+
+		try:
+			self.ioniceness_class = opts.ioniceness_class
+		except AttributeError as e:
+			self.ioniceness_class = self.default_ioniceness_class
+
+		try:
+			self.ioniceness = opts.ioniceness
+		except AttributeError as e:
+			self.ioniceness = self.default_ioniceness
+	
+		try:
+			self.frequency = int(opts.frequency)
+		except (AttributeError, NameError, ValueError) as e:
+			self.frequency = self.default_frequency
+
+		return self.control(self.action)
 
 	def Run(self):
 		i=0
@@ -1666,10 +1729,13 @@ class MyLogger(logging.Logger):
 	had_warning = False
 	paused = False
 
-	def Pause(self):
-		return self.pause()
+#	def Pause(self):
+#		return self.pause()
+
 	def pause(self):
 		self.paused = True
+	Pause=pause
+
 	def unPause(self):
 		self.paused = False
 
@@ -1711,6 +1777,64 @@ class MyLogger(logging.Logger):
 	def hadErrors(self):
 		return self.had_error
 
+	'''
+	def debug
+	def info
+	def warn
+	def error
+	def critical
+	def fatal
+	'''
+
+	def debug(self, msg, *args, **kwargs):
+		if self.opt_full_verbose and self.opt_debug:
+			print( msg)
+		return logging.Logger.debug(self, msg, *args, **kwargs)
+		
+	def info(self, msg, *args, **kwargs):
+		if self.opt_verbose:
+			print(msg)
+		return logging.Logger.info(self, msg, *args, **kwargs)
+
+	def warn(self, msg, *args, **kwargs):
+		self.had_warning = True
+
+		if not self.opt_quiet:
+			print('WARNING: %s' % msg)
+		return logging.Logger.warn(self, msg, *args, **kwargs)
+	warning = warn
+
+	def error(self, msg, *args, **kwargs):
+		self.had_error = True
+
+		sys.stderr.write("%s%s\n" % (('' if kwargs.get('exc_info',None) else \
+			'ERROR: ') ,msg))
+
+		return logging.Logger.error(self, msg, *args, **kwargs)
+
+	def critical(self, msg, *args, **kwargs):
+		self.had_error = True
+
+		# if kwargs.get('exc_info',None): sys.stderr.write("%s\n" % msg)
+		# else: sys.stderr.write("CRITICAL: %s\n" % msg)
+
+		sys.stderr.write("%s%s\n" % (('' if kwargs.get('exc_info',None) else \
+			'CRITICAL: ') ,msg))
+
+		return logging.Logger.critical(self, msg, *args, **kwargs)
+
+	def fatal(self, msg, *args, **kwargs):
+		self.had_error = True
+
+		#if kwargs.get('exc_info',None): sys.stderr.write("%s\n" % msg)
+		#else: sys.stderr.write("FATAL: %s\n" % msg)
+
+		sys.stderr.write("%s%s\n" % (('' if kwargs.get('exc_info',None) else \
+			'FATAL: ') ,msg))
+
+		logging.Logger.fatal(self, msg, *args, **kwargs)
+		sys.exit(1)
+
 	def _log(self, level, msg, args, exc_info=None):
 		"""
 		Low-level logging routine which creates a LogRecord and then calls
@@ -1718,21 +1842,11 @@ class MyLogger(logging.Logger):
 		"""
 		if self.paused:
 			return
-		if level == logging.ERROR:
-			#print >> sys.stderr, 'ERROR: ', msg
-			sys.stderr.write("ERROR: %s\n" % msg)
-			self.had_error = True
-		if level == logging.WARN and not self.opt_quiet:
-			print('WARNING: %s' % msg)
-			self.had_warning = True
-		if level == logging.INFO and self.opt_verbose:
-			print(msg)
+
 		#if level == logging.DEBUG and self.opt_verbose and self.opt_debug:
 		#	print msg
 		#if level == logging.DEBUG and self.opt_full_verbose and self.opt_debug:
 		#if level == logging.DEBUG and self.opt_verbose and self.opt_debug:
-		if level == logging.DEBUG and self.opt_full_verbose and self.opt_debug:
-			print( msg)
 
 		if logging._srcfile:
 			fn, lno, func = self.findCaller()
@@ -1741,6 +1855,7 @@ class MyLogger(logging.Logger):
 		if exc_info:
 			if type(exc_info) != types.TupleType:
 				exc_info = sys.exc_info()
+
 		record = self.makeRecord(self.name, level, fn, lno, msg, args, exc_info)
 		self.handle(record)
 
@@ -1970,56 +2085,6 @@ class ImmutableDict(UserDict):
 		UserDict.setdefault(self, key, failobj)
 		if key not in self._keys: self._keys.append(key)
 
-class OrderedDict(UserDict):
-	def __init__(self, dict = None):
-		self._keys = []
-		UserDict.__init__(self, dict)
-
-	def __delitem__(self, key):
-		UserDict.__delitem__(self, key)
-		self._keys.remove(key)
-
-	def __setitem__(self, key, item):
-		UserDict.__setitem__(self, key, item)
-		if key not in self._keys: self._keys.append(key)
-
-	def clear(self):
-		UserDict.clear(self)
-		self._keys = []
-
-	def copy(self):
-		dict = UserDict.copy(self)
-		dict._keys = self._keys[:]
-		return dict
-
-	def items(self):
-		return zip(self._keys, self.values())
-
-	def keys(self):
-		return self._keys
-
-	def popitem(self):
-		try:
-			key = self._keys[-1]
-		except IndexError:
-			raise KeyError('dictionary is empty')
-
-		val = self[key]
-		del self[key]
-
-		return (key, val)
-
-	def setdefault(self, key, failobj = None):
-		UserDict.setdefault(self, key, failobj)
-		if key not in self._keys: self._keys.append(key)
-
-	def update(self, dict):
-		UserDict.update(self, dict)
-		for key in dict.keys():
-			if key not in self._keys: self._keys.append(key)
-
-	def values(self):
-		return map(self.get, self._keys)
 # ============================================================================#
 
 # #############################################################################
@@ -2310,6 +2375,7 @@ def set_logging(opts, name, quiet=False, __logdir__=__logdir__):
 		level=logging.INFO
 		log_file = 'pytis_tools.log'
 	logging.basicConfig(
+		name=name,
 		filename = os.path.abspath(os.path.join(os.path.abspath(__logdir__), log_file )),
 		level=level,
 		format='%(asctime)s %(name)-10s %(levelname)-8s %(message)s',
@@ -2333,6 +2399,8 @@ def set_logging(opts, name, quiet=False, __logdir__=__logdir__):
 	# BEGIN TRICK
 	# From here to the next comment is a trick to allow the log message to goto
 	# only a log file, and not make it to the screen of a user.
+	# we may be using this trick again, depends on the overall verbosity, look
+	# further down this function for the next occurance of sys.stdout  
 	buf = StringIO() 
 	sys.stdout = buf
 	log.info("STARTING: %s" % name)
@@ -2829,8 +2897,9 @@ def die(string=None):
 	if log and string:
 		log.error(string)
 	elif string:
-		print(string)
+		print("output: '%s'" % string)
 	sys.exit()
+DIE=Die=die
 
 def protect(s,trim_len=4):
 	""" padd a password and only show the remaining "trim_len" 
@@ -2868,6 +2937,14 @@ def num2col(num):
 			break
 	return ''.join(reversed(col))
 
+def is_int(x):
+	try: 
+		int(x)
+	except:
+		return False
+	else:
+		return True
+
 col2num = lambda col: reduce(lambda x, y: x*26 + y, [ord(c.upper()) - ord('A') + 1 for c in col])
 ''' Turns a MS Excel Column title into	a numeric representation of a column.
 EXAMPLES:
@@ -2887,7 +2964,11 @@ def column(str_or_int):
 
 def simpleDecode(s=''):
 	bencoded_txt = s.strip().encode('ascii')
-	bdecoded_txt = b64.b64decode(bencoded_txt)
+	try:
+		bdecoded_txt = b64.b64decode(bencoded_txt)
+	except TypeError as e:
+		raise InputError("Invalid encoded input:  This is likely caused by a " \
+			"malformed encrypted password, usually an incorrect length.")
 	return bdecoded_txt.decode('ascii')
 
 def simpleEncode(s=''):
@@ -2950,6 +3031,23 @@ def sendEmail(body, subject, to, mfrom, cc, host=None, local_hostname=None,
 		log.error("Incorrect mail host and/or local_hostname " \
 		"provided, sendmail failed - %s " % subject)
 		return False
+
+
+if not getattr(os,'touch',None):
+	if sys.version_info >= (3, 3):
+		def touch(fname, times=None, ns=None, dir_fd=None):
+			if os.path.isfile(fname) and os.path.exists(fname): return False
+			with os.open(fname, os.O_APPEND, dir_fd=dir_fd) as f:
+				os.utime(f.fileno() if os.utime in os.supports_fd else fname,
+					times=times, ns=ns, dir_fd=dir_fd)
+			return True
+	else:
+		def touch(fname, times=None):
+			if os.path.isfile(fname) and os.path.exists(fname): return False
+			with file(fname, 'a'):
+				os.utime(fname, times)
+			return True
+	os.touch = touch
 
 
 def main(): #global __version__

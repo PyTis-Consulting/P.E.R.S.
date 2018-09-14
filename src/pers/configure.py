@@ -16,9 +16,9 @@
 ############################################################################## #
 
 
-configdir = '/root/github/p.e.r.s./src/etc'
+configdir = '/root/github/pers/src/etc'
+logdir = '/root/github/pers/src/log'
 #copyright_dir = '/home/jlee/.mycopyright'
-logdir = '/root/github/p.e.r.s./src/log'
 
 #__all__ = ['configdir', 'copyright_dir', 'logdir']
 __all__ = ['configdir', 'logdir']
