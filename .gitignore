@@ -1,3 +1,10 @@
+# Log Files / compressed-logs
+src/log/*.log
+src/log/*.log.1
+src/log/*.log.*.gz
+# Hide Configuration variables from github (such as DB Passwords)
+src/etc/config.ini
+
 # Byte-compiled / Cached Files
 __pycache__/
 *.pyc
