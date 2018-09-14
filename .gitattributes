@@ -1,0 +1,4 @@
+doc/* linguist-vendored
+htmldoc/* linguist-documentation
+*.py linguist-language=Python
+
