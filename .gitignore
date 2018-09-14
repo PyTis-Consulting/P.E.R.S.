@@ -1,5 +1,8 @@
 # Log Files / compressed-logs
+src/log/pers.log # odd the next line down, doesn't ignore this one
 src/log/*.log
+src/log/pytis_tools.log
+
 src/log/*.log.1
 src/log/*.log.*.gz
 # Hide Configuration variables from github (such as DB Passwords)
